@@ -166,7 +166,7 @@ class Facebook implements ProjectInterface, FacebookInterface
             'app_id'       => $this->appId,
             'caption'      => $caption,
             'href'         => $url,
-            'redirect_uri' => ''
+            'redirect_uri' => $this->redirectUrl
         );
         $this->link = self::SHARE_URI . '?' . http_build_query($params);
 
