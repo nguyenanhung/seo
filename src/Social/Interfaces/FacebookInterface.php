@@ -98,6 +98,18 @@ interface FacebookInterface
     public function createShareLink($url = '', $caption = '');
 
     /**
+     * Function graphShare
+     *
+     * @author: 713uk13m <dev@nguyenanhung.com>
+     * @time  : 11/6/18 15:23
+     *
+     * @param string $url
+     *
+     * @return $this
+     */
+    public function graphShare($url = '');
+
+    /**
      * Function getLink
      *
      * @author: 713uk13m <dev@nguyenanhung.com>
@@ -106,4 +118,24 @@ interface FacebookInterface
      * @return string
      */
     public function getLink();
+
+    /**
+     * Function commentCount
+     *
+     * @author: 713uk13m <dev@nguyenanhung.com>
+     * @time  : 11/6/18 15:27
+     *
+     * @return int
+     */
+    public function commentCount();
+
+    /**
+     * Function shareCount
+     *
+     * @author: 713uk13m <dev@nguyenanhung.com>
+     * @time  : 11/6/18 15:28
+     *
+     * @return int
+     */
+    public function shareCount();
 }

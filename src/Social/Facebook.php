@@ -11,6 +11,7 @@ namespace nguyenanhung\SEO\Social;
 
 use nguyenanhung\SEO\Interfaces\ProjectInterface;
 use nguyenanhung\SEO\Social\Interfaces\FacebookInterface;
+use nguyenanhung\SEO\Utils;
 
 /**
  * Class Facebook
@@ -22,6 +23,7 @@ use nguyenanhung\SEO\Social\Interfaces\FacebookInterface;
 class Facebook implements ProjectInterface, FacebookInterface
 {
     const SHARE_URI = 'https://www.facebook.com/dialog/share';
+    const GRAPH_URI = 'https://graph.facebook.com/';
     /** @var string Facebook App ID */
     private $appId;
     /** @var string List Admin ID, mỗi ID cách nhau 1 dấu , */
@@ -30,6 +32,8 @@ class Facebook implements ProjectInterface, FacebookInterface
     private $redirectUrl;
     /** @var string Link dùng để nhúng share trên facebook */
     private $link;
+    /** @var null|object Object chứa thông tin graph content */
+    private $graphShare;
 
     /**
      * Facebook constructor.
@@ -170,6 +174,31 @@ class Facebook implements ProjectInterface, FacebookInterface
     }
 
     /**
+     * Function graphShare
+     *
+     * @author: 713uk13m <dev@nguyenanhung.com>
+     * @time  : 11/6/18 15:23
+     *
+     * @param string $url
+     *
+     * @return $this
+     */
+    public function graphShare($url = '')
+    {
+        $params  = array(
+            'id' => $url
+        );
+        $request = Utils::request(self::GRAPH_URI, $params);
+        if (!empty($request)) {
+            $this->graphShare = json_decode(trim($request));
+        } else {
+            $this->graphShare = NULL;
+        }
+
+        return $this;
+    }
+
+    /**
      * Function getLink
      *
      * @author: 713uk13m <dev@nguyenanhung.com>
@@ -180,5 +209,43 @@ class Facebook implements ProjectInterface, FacebookInterface
     public function getLink()
     {
         return $this->link;
+    }
+
+    /**
+     * Function commentCount
+     *
+     * @author: 713uk13m <dev@nguyenanhung.com>
+     * @time  : 11/6/18 15:27
+     *
+     * @return int
+     */
+    public function commentCount()
+    {
+        if (is_object($this->graphShare) && isset($this->graphShare->share->comment_count)) {
+            $result = $this->graphShare->share->comment_count;
+        } else {
+            $result = 0;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Function shareCount
+     *
+     * @author: 713uk13m <dev@nguyenanhung.com>
+     * @time  : 11/6/18 15:28
+     *
+     * @return int
+     */
+    public function shareCount()
+    {
+        if (is_object($this->graphShare) && isset($this->graphShare->share->share_count)) {
+            $result = $this->graphShare->share->share_count;
+        } else {
+            $result = 0;
+        }
+
+        return $result;
     }
 }
