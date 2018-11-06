@@ -1,0 +1,38 @@
+{
+    "name": "nguyenanhung/seo",
+    "type": "library",
+    "description": "Search Engine Optimization with PHP",
+    "keywords": [
+        "php",
+        "seo",
+        "Search Engine Optimization",
+        "seo optimization",
+        "seo management",
+        "seo php",
+        "seo manipulation"
+    ],
+    "homepage": "https://github.com/nguyenanhung/seo",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Nguyen An Hung",
+            "email": "dev@nguyenanhung.com",
+            "homepage": "https://nguyenanhung.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "monolog/monolog": "^1.23"
+    },
+    "require-dev": {
+        "kint-php/kint": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "nguyenanhung\\SEO\\": "src/"
+        }
+    }
+}
