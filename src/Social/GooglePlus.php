@@ -58,7 +58,7 @@ class GooglePlus implements ProjectInterface, GooglePlusInterface
     public function createShareLink($url = '')
     {
         $params     = array(
-            'url' => $url,
+            'url' => $url . '?utm_source=google%2B&utm_medium=link_share&utm_campaign=google_plus_share',
         );
         $this->link = self::SHARE_URI . '?' . http_build_query($params);
 

@@ -165,8 +165,8 @@ class Facebook implements ProjectInterface, FacebookInterface
         $params     = array(
             'app_id'       => $this->appId,
             'caption'      => $caption,
-            'href'         => $url,
-            'redirect_uri' => $this->redirectUrl
+            'href'         => $url . '?utm_source=facebook&utm_medium=link_share&utm_campaign=facebook_share',
+            'redirect_uri' => $this->redirectUrl . '?utm_source=facebook&utm_medium=link_call_back&utm_campaign=facebook_share'
         );
         $this->link = self::SHARE_URI . '?' . http_build_query($params);
 
