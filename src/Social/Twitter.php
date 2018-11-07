@@ -63,7 +63,7 @@ class Twitter implements ProjectInterface, TwitterInterface
             $referer = $url;
         }
         $params     = array(
-            'url'              => $url,
+            'url'              => $url . '?utm_source=twitter&utm_medium=link_share&utm_campaign=twitter_share',
             'text'             => $text,
             'original_referer' => $referer
         );
