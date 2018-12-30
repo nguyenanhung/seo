@@ -7,12 +7,12 @@
  * Time: 14:40
  */
 
-namespace nguyenanhung\SEO\Social\Interfaces;
+namespace nguyenanhung\SEO\Social;
 
 /**
  * Interface FacebookInterface
  *
- * @package   nguyenanhung\SEO\Social\Interfaces
+ * @package   nguyenanhung\SEO\Social
  * @author    713uk13m <dev@nguyenanhung.com>
  * @copyright 713uk13m <dev@nguyenanhung.com>
  */

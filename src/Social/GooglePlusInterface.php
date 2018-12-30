@@ -7,12 +7,12 @@
  * Time: 16:13
  */
 
-namespace nguyenanhung\SEO\Social\Interfaces;
+namespace nguyenanhung\SEO\Social;
 
 /**
  * Interface GooglePlusInterface
  *
- * @package   nguyenanhung\SEO\Social\Interfaces
+ * @package   nguyenanhung\SEO\Social
  * @author    713uk13m <dev@nguyenanhung.com>
  * @copyright 713uk13m <dev@nguyenanhung.com>
  */

@@ -6,19 +6,19 @@
  * Time: 14:55
  */
 
-namespace nguyenanhung\SEO\Interfaces;
+namespace nguyenanhung\SEO;
 
 /**
  * Interface ProjectInterface
  *
- * @package   nguyenanhung\SEO\Interfaces
+ * @package   nguyenanhung\SEO
  * @author    713uk13m <dev@nguyenanhung.com>
  * @copyright 713uk13m <dev@nguyenanhung.com>
  */
 interface ProjectInterface
 {
-    const VERSION             = '1.0.2.2';
-    const LAST_MODIFIED       = '2018-12-18';
+    const VERSION             = '1.0.3';
+    const LAST_MODIFIED       = '2018-12-31';
     const AUTHOR_NAME         = 'Hung Nguyen';
     const AUTHOR_EMAIL        = 'dev@nguyenanhung.com';
     const PROJECT_NAME        = 'Search Engine Optimization Manager';

@@ -21,17 +21,17 @@ use Curl\Curl;
 class Utils
 {
     /**
-     * Function request
+     * Function sendRequest
      *
      * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 11/6/18 15:19
+     * @time  : 2018-12-31 01:44
      *
      * @param string $url
      * @param null   $params
      *
      * @return bool|null|string
      */
-    public static function request($url = '', $params = NULL)
+    public static function sendRequest($url = '', $params = NULL)
     {
         try {
             $curl = new Curl();
@@ -40,16 +40,17 @@ class Utils
             } else {
                 $curl->get($url);
             }
-            if ($curl->error) {
-                $result = FALSE;
-            } else {
-                $result = $curl->response;
-            }
+            $result = $curl->error ? FALSE : $curl->rawResponse;
             $curl->close();
 
             return $result;
         }
         catch (\Exception $e) {
+            $message = 'Error Code: ' . $e->getCode() . ' - File: ' . $e->getFile() . ' - Line: ' . $e->getLine() . ' - Message: ' . $e->getMessage();
+            if (function_exists('log_message')) {
+                log_message('error', $message);
+            }
+
             return NULL;
         }
     }
