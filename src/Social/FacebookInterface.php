@@ -110,16 +110,6 @@ interface FacebookInterface
     public function graphShare($url = '');
 
     /**
-     * Function getLink
-     *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 11/6/18 14:58
-     *
-     * @return string
-     */
-    public function getLink();
-
-    /**
      * Function commentCount
      *
      * @author: 713uk13m <dev@nguyenanhung.com>

@@ -21,7 +21,7 @@ use nguyenanhung\SEO\Version;
  */
 class GooglePlus implements ProjectInterface, GooglePlusInterface
 {
-    use Version;
+    use Version, SocialTrait;
     const SHARE_URI = 'https://plus.google.com/share';
     /** @var string Link dùng để nhúng share trên Google+ */
     private $link;
@@ -51,18 +51,5 @@ class GooglePlus implements ProjectInterface, GooglePlusInterface
         $this->link = self::SHARE_URI . '?' . http_build_query($params);
 
         return $this;
-    }
-
-    /**
-     * Function getLink
-     *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 11/6/18 14:58
-     *
-     * @return string
-     */
-    public function getLink()
-    {
-        return $this->link;
     }
 }

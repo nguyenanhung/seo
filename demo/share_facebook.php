@@ -10,18 +10,24 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 $fb = new \nguyenanhung\SEO\Social\Facebook();
 
-d($fb->setAppId('1234')
-   ->setAdminId('456')
-   ->setRedirectUrl('https://nguyenanhung.com')
-   ->createShareLink('https://blog.nguyenanhung.com/link-can-share.html', 'caption share')
-   ->getLink());
+echo "<pre>";
+print_r($fb->setAppId('1234')
+           ->setAdminId('456')
+           ->setRedirectUrl('https://nguyenanhung.com')
+           ->createShareLink('https://blog.nguyenanhung.com/link-can-share.html', 'caption share')
+           ->getLink());
+echo "</pre>";
 
-d($fb->setAppId('1234')
-   ->setAdminId('456')
-   ->graphShare('https://nguyenanhung.com')
-   ->commentCount());
+echo "<pre>";
+print_r($fb->setAppId('1234')
+           ->setAdminId('456')
+           ->graphShare('https://nguyenanhung.com')
+           ->commentCount());
+echo "</pre>";
 
-d($fb->setAppId('1234')
-   ->setAdminId('456')
-   ->graphShare('http://nguyenanhung.com')
-   ->shareCount());
+echo "<pre>";
+print_r($fb->setAppId('1234')
+           ->setAdminId('456')
+           ->graphShare('http://nguyenanhung.com')
+           ->shareCount());
+echo "</pre>";

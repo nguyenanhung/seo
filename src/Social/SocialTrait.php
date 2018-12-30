@@ -3,30 +3,33 @@
  * Project seo.
  * Created by PhpStorm.
  * User: 713uk13m <dev@nguyenanhung.com>
- * Date: 11/6/18
- * Time: 16:13
+ * Date: 2018-12-31
+ * Time: 02:10
  */
 
 namespace nguyenanhung\SEO\Social;
 
 /**
- * Interface GooglePlusInterface
+ * Trait SocialTrait
  *
  * @package   nguyenanhung\SEO\Social
  * @author    713uk13m <dev@nguyenanhung.com>
  * @copyright 713uk13m <dev@nguyenanhung.com>
+ *
+ * @property mixed link
  */
-interface GooglePlusInterface
+trait SocialTrait
 {
     /**
-     * Function createShareLink
+     * Function getLink
      *
      * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 11/6/18 16:12
+     * @time  : 2018-12-31 02:10
      *
-     * @param string $url
-     *
-     * @return $this
+     * @return mixed
      */
-    public function createShareLink($url = '');
+    public function getLink()
+    {
+        return $this->link;
+    }
 }

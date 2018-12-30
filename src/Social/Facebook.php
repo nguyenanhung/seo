@@ -22,7 +22,7 @@ use nguyenanhung\SEO\Version;
  */
 class Facebook implements ProjectInterface, FacebookInterface
 {
-    use Version;
+    use Version, SocialTrait;
     const SHARE_URI = 'https://www.facebook.com/dialog/share';
     const GRAPH_URI = 'https://graph.facebook.com/';
     /** @var string Facebook App ID */
@@ -182,19 +182,6 @@ class Facebook implements ProjectInterface, FacebookInterface
         }
 
         return $this;
-    }
-
-    /**
-     * Function getLink
-     *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 11/6/18 14:58
-     *
-     * @return string
-     */
-    public function getLink()
-    {
-        return $this->link;
     }
 
     /**

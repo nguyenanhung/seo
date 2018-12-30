@@ -21,7 +21,7 @@ use nguyenanhung\SEO\Version;
  */
 class Twitter implements ProjectInterface, TwitterInterface
 {
-    use Version;
+    use Version, SocialTrait;
     const SHARE_URI = 'https://twitter.com/intent/tweet';
     /** @var string Link dùng để nhúng share trên twitter */
     private $link;
@@ -58,18 +58,5 @@ class Twitter implements ProjectInterface, TwitterInterface
         $this->link = self::SHARE_URI . '?' . http_build_query($params);
 
         return $this;
-    }
-
-    /**
-     * Function getLink
-     *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 11/6/18 14:58
-     *
-     * @return string
-     */
-    public function getLink()
-    {
-        return $this->link;
     }
 }
