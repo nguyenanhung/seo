@@ -7,12 +7,12 @@
  * Time: 16:13
  */
 
-namespace nguyenanhung\SEO\Social\Interfaces;
+namespace nguyenanhung\SEO\Social;
 
 /**
  * Interface GooglePlusInterface
  *
- * @package   nguyenanhung\SEO\Social\Interfaces
+ * @package   nguyenanhung\SEO\Social
  * @author    713uk13m <dev@nguyenanhung.com>
  * @copyright 713uk13m <dev@nguyenanhung.com>
  */
@@ -29,14 +29,4 @@ interface GooglePlusInterface
      * @return $this
      */
     public function createShareLink($url = '');
-
-    /**
-     * Function getLink
-     *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 11/6/18 14:58
-     *
-     * @return string
-     */
-    public function getLink();
 }

@@ -9,8 +9,8 @@
 
 namespace nguyenanhung\SEO\Social;
 
-use nguyenanhung\SEO\Interfaces\ProjectInterface;
-use nguyenanhung\SEO\Social\Interfaces\GooglePlusInterface;
+use nguyenanhung\SEO\ProjectInterface;
+use nguyenanhung\SEO\Version;
 
 /**
  * Class GooglePlus
@@ -21,6 +21,7 @@ use nguyenanhung\SEO\Social\Interfaces\GooglePlusInterface;
  */
 class GooglePlus implements ProjectInterface, GooglePlusInterface
 {
+    use Version, SocialTrait;
     const SHARE_URI = 'https://plus.google.com/share';
     /** @var string Link dùng để nhúng share trên Google+ */
     private $link;
@@ -30,19 +31,6 @@ class GooglePlus implements ProjectInterface, GooglePlusInterface
      */
     public function __construct()
     {
-    }
-
-    /**
-     * Function getVersion
-     *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 11/6/18 14:39
-     *
-     * @return mixed|string
-     */
-    public function getVersion()
-    {
-        return self::VERSION;
     }
 
     /**
@@ -63,18 +51,5 @@ class GooglePlus implements ProjectInterface, GooglePlusInterface
         $this->link = self::SHARE_URI . '?' . http_build_query($params);
 
         return $this;
-    }
-
-    /**
-     * Function getLink
-     *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 11/6/18 14:58
-     *
-     * @return string
-     */
-    public function getLink()
-    {
-        return $this->link;
     }
 }

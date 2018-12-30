@@ -9,9 +9,9 @@
 
 namespace nguyenanhung\SEO\Social;
 
-use nguyenanhung\SEO\Interfaces\ProjectInterface;
-use nguyenanhung\SEO\Social\Interfaces\FacebookInterface;
+use nguyenanhung\SEO\ProjectInterface;
 use nguyenanhung\SEO\Utils;
+use nguyenanhung\SEO\Version;
 
 /**
  * Class Facebook
@@ -22,6 +22,7 @@ use nguyenanhung\SEO\Utils;
  */
 class Facebook implements ProjectInterface, FacebookInterface
 {
+    use Version, SocialTrait;
     const SHARE_URI = 'https://www.facebook.com/dialog/share';
     const GRAPH_URI = 'https://graph.facebook.com/';
     /** @var string Facebook App ID */
@@ -40,19 +41,6 @@ class Facebook implements ProjectInterface, FacebookInterface
      */
     public function __construct()
     {
-    }
-
-    /**
-     * Function getVersion
-     *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 11/6/18 14:39
-     *
-     * @return mixed|string
-     */
-    public function getVersion()
-    {
-        return self::VERSION;
     }
 
     /**
@@ -185,10 +173,8 @@ class Facebook implements ProjectInterface, FacebookInterface
      */
     public function graphShare($url = '')
     {
-        $params  = array(
-            'id' => $url
-        );
-        $request = Utils::request(self::GRAPH_URI, $params);
+        $params  = array('id' => $url);
+        $request = Utils::sendRequest(self::GRAPH_URI, $params);
         if (!empty($request)) {
             $this->graphShare = json_decode(trim($request));
         } else {
@@ -196,19 +182,6 @@ class Facebook implements ProjectInterface, FacebookInterface
         }
 
         return $this;
-    }
-
-    /**
-     * Function getLink
-     *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 11/6/18 14:58
-     *
-     * @return string
-     */
-    public function getLink()
-    {
-        return $this->link;
     }
 
     /**

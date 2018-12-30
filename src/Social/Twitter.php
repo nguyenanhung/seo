@@ -9,8 +9,8 @@
 
 namespace nguyenanhung\SEO\Social;
 
-use nguyenanhung\SEO\Interfaces\ProjectInterface;
-use nguyenanhung\SEO\Social\Interfaces\TwitterInterface;
+use nguyenanhung\SEO\ProjectInterface;
+use nguyenanhung\SEO\Version;
 
 /**
  * Class Twitter
@@ -21,6 +21,7 @@ use nguyenanhung\SEO\Social\Interfaces\TwitterInterface;
  */
 class Twitter implements ProjectInterface, TwitterInterface
 {
+    use Version, SocialTrait;
     const SHARE_URI = 'https://twitter.com/intent/tweet';
     /** @var string Link dùng để nhúng share trên twitter */
     private $link;
@@ -30,19 +31,6 @@ class Twitter implements ProjectInterface, TwitterInterface
      */
     public function __construct()
     {
-    }
-
-    /**
-     * Function getVersion
-     *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 11/6/18 14:39
-     *
-     * @return mixed|string
-     */
-    public function getVersion()
-    {
-        return self::VERSION;
     }
 
     /**
@@ -70,18 +58,5 @@ class Twitter implements ProjectInterface, TwitterInterface
         $this->link = self::SHARE_URI . '?' . http_build_query($params);
 
         return $this;
-    }
-
-    /**
-     * Function getLink
-     *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 11/6/18 14:58
-     *
-     * @return string
-     */
-    public function getLink()
-    {
-        return $this->link;
     }
 }

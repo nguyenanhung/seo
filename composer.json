@@ -23,15 +23,14 @@
     ],
     "require": {
         "ext-curl": "*",
-        "ext-json": "*",
-        "php-curl-class/php-curl-class": "^8.3"
-    },
-    "require-dev": {
-        "kint-php/kint": "^3.0"
+        "ext-json": "*"
     },
     "autoload": {
         "psr-4": {
             "nguyenanhung\\SEO\\": "src/"
-        }
+        },
+        "files": [
+            "helper/common.php"
+        ]
     }
 }
