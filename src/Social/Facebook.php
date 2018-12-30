@@ -173,9 +173,7 @@ class Facebook implements ProjectInterface, FacebookInterface
      */
     public function graphShare($url = '')
     {
-        $params  = array(
-            'id' => $url
-        );
+        $params  = array('id' => $url);
         $request = Utils::sendRequest(self::GRAPH_URI, $params);
         if (!empty($request)) {
             $this->graphShare = json_decode(trim($request));
