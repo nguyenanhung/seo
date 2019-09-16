@@ -9,6 +9,8 @@
 
 namespace nguyenanhung\SEO;
 
+use Exception;
+
 /**
  * Class Utils
  *
@@ -61,7 +63,7 @@ class Utils
                 return $response;
             }
         }
-        catch (\Exception $e) {
+        catch (Exception $e) {
             $message = 'Error Code: ' . $e->getCode() . ' - File: ' . $e->getFile() . ' - Line: ' . $e->getLine() . ' - Message: ' . $e->getMessage();
             if (function_exists('log_message')) {
                 log_message('error', $message);
