@@ -10,12 +10,12 @@ if (!function_exists('add_this_script')) {
     /**
      * Function add_this_script
      *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 2018-12-31 01:55
-     *
      * @param string $id
      *
      * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 10/4/19 33:23
      */
     function add_this_script($id = '')
     {
@@ -28,12 +28,12 @@ if (!function_exists('facebook_comments')) {
     /**
      * Function facebook_comments
      *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 2018-12-31 01:57
-     *
      * @param string $link
      *
      * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 10/4/19 33:16
      */
     function facebook_comments($link = '')
     {
