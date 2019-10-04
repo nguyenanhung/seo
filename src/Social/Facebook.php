@@ -23,6 +23,7 @@ use nguyenanhung\SEO\Version;
 class Facebook implements ProjectInterface, FacebookInterface
 {
     use Version, SocialTrait;
+
     const SHARE_URI = 'https://www.facebook.com/dialog/share';
     const GRAPH_URI = 'https://graph.facebook.com/';
     /** @var string Facebook App ID */
@@ -38,6 +39,9 @@ class Facebook implements ProjectInterface, FacebookInterface
 
     /**
      * Facebook constructor.
+     *
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
      */
     public function __construct()
     {
@@ -46,12 +50,12 @@ class Facebook implements ProjectInterface, FacebookInterface
     /**
      * Function setAppId
      *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 11/6/18 14:43
-     *
      * @param string $appId
      *
-     * @return $this
+     * @return $this|\nguyenanhung\SEO\Social\FacebookInterface
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 10/4/19 33:35
      */
     public function setAppId($appId = '')
     {
@@ -63,10 +67,10 @@ class Facebook implements ProjectInterface, FacebookInterface
     /**
      * Function getAppId
      *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 11/6/18 14:44
-     *
      * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 10/4/19 33:41
      */
     public function getAppId()
     {
@@ -76,12 +80,12 @@ class Facebook implements ProjectInterface, FacebookInterface
     /**
      * Function setAdminId
      *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 11/6/18 14:46
-     *
      * @param string $adminId
      *
-     * @return $this
+     * @return $this|\nguyenanhung\SEO\Social\FacebookInterface
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 10/4/19 33:46
      */
     public function setAdminId($adminId = '')
     {
@@ -93,10 +97,10 @@ class Facebook implements ProjectInterface, FacebookInterface
     /**
      * Function getAdminId
      *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 11/6/18 14:46
-     *
      * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 10/4/19 33:52
      */
     public function getAdminId()
     {
@@ -106,12 +110,12 @@ class Facebook implements ProjectInterface, FacebookInterface
     /**
      * Function setRedirectUrl
      *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 11/6/18 14:53
-     *
      * @param string $redirectUrl
      *
-     * @return $this
+     * @return $this|\nguyenanhung\SEO\Social\FacebookInterface
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 10/4/19 33:57
      */
     public function setRedirectUrl($redirectUrl = '')
     {
@@ -123,10 +127,10 @@ class Facebook implements ProjectInterface, FacebookInterface
     /**
      * Function getRedirectUrl
      *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 11/6/18 14:54
-     *
      * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 10/4/19 34:03
      */
     public function getRedirectUrl()
     {
@@ -136,13 +140,13 @@ class Facebook implements ProjectInterface, FacebookInterface
     /**
      * Function createShareLink
      *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 11/6/18 14:58
-     *
      * @param string $url
      * @param string $caption
      *
-     * @return $this
+     * @return $this|\nguyenanhung\SEO\Social\FacebookInterface
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 10/4/19 34:08
      */
     public function createShareLink($url = '', $caption = '')
     {
@@ -164,12 +168,12 @@ class Facebook implements ProjectInterface, FacebookInterface
     /**
      * Function graphShare
      *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 11/6/18 15:23
-     *
      * @param string $url
      *
-     * @return $this
+     * @return $this|\nguyenanhung\SEO\Social\FacebookInterface
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 10/4/19 34:18
      */
     public function graphShare($url = '')
     {
@@ -187,10 +191,10 @@ class Facebook implements ProjectInterface, FacebookInterface
     /**
      * Function commentCount
      *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 11/6/18 15:27
-     *
      * @return int
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 10/4/19 34:23
      */
     public function commentCount()
     {
@@ -206,10 +210,10 @@ class Facebook implements ProjectInterface, FacebookInterface
     /**
      * Function shareCount
      *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 11/6/18 15:28
-     *
      * @return int
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 10/4/19 34:28
      */
     public function shareCount()
     {

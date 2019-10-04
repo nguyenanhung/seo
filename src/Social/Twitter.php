@@ -22,12 +22,16 @@ use nguyenanhung\SEO\Version;
 class Twitter implements ProjectInterface, TwitterInterface
 {
     use Version, SocialTrait;
+
     const SHARE_URI = 'https://twitter.com/intent/tweet';
     /** @var string Link dùng để nhúng share trên twitter */
     private $link;
 
     /**
      * Twitter constructor.
+     *
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
      */
     public function __construct()
     {
@@ -36,14 +40,14 @@ class Twitter implements ProjectInterface, TwitterInterface
     /**
      * Function createShareLink
      *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 11/6/18 16:09
-     *
      * @param string $url
      * @param string $text
      * @param string $referer
      *
-     * @return $this
+     * @return $this|\nguyenanhung\SEO\Social\TwitterInterface
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 10/4/19 35:40
      */
     public function createShareLink($url = '', $text = '', $referer = '')
     {

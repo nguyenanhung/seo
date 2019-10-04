@@ -23,14 +23,14 @@ class Utils
     /**
      * Function sendRequest
      *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 2018-12-31 01:48
-     *
      * @param string $url
      * @param null   $params
      * @param string $method
      *
-     * @return bool|null|string
+     * @return bool|string|null
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 10/4/19 36:05
      */
     public static function sendRequest($url = '', $params = NULL, $method = 'GET')
     {

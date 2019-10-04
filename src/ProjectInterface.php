@@ -17,8 +17,8 @@ namespace nguyenanhung\SEO;
  */
 interface ProjectInterface
 {
-    const VERSION             = '1.0.4';
-    const LAST_MODIFIED       = '2019-09-16';
+    const VERSION             = '1.0.5';
+    const LAST_MODIFIED       = '2019-10-04';
     const AUTHOR_NAME         = 'Hung Nguyen';
     const AUTHOR_EMAIL        = 'dev@nguyenanhung.com';
     const PROJECT_NAME        = 'Search Engine Optimization Manager';
