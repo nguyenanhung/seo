@@ -364,4 +364,49 @@ class SeoUrl implements Environment
     {
         return $this->urlPage($pageSlug, $pageId);
     }
+
+    /**
+     * Function urlEncode
+     *
+     * @param string $url
+     *
+     * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 09/15/2021 48:50
+     */
+    public function urlEncode(string $url = ''): string
+    {
+        return urlencode($url);
+    }
+
+    /**
+     * Function urlDecode
+     *
+     * @param string $url
+     *
+     * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 09/15/2021 49:16
+     */
+    public function urlDecode(string $url): string
+    {
+        return urldecode($url);
+    }
+
+    /**
+     * Function parseUrl
+     *
+     * @param string $url
+     *
+     * @return array|false|int|string|null
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 09/15/2021 49:53
+     */
+    public function parseUrl(string $url = 'https://nguyenanhung.com/')
+    {
+        return parse_url($url);
+    }
 }
