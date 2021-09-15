@@ -19,9 +19,7 @@ if (!function_exists('add_this_script')) {
      */
     function add_this_script($id = '')
     {
-        $html = '<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=' . $id . '"></script>';
-
-        return $html;
+        return '<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=' . $id . '"></script>';
     }
 }
 if (!function_exists('facebook_comments')) {
@@ -37,8 +35,6 @@ if (!function_exists('facebook_comments')) {
      */
     function facebook_comments($link = '')
     {
-        $html = '<div class="fb-comments" data-href="' . $link . '" data-width="100%" data-numposts="5"></div>';
-
-        return $html;
+        return '<div class="fb-comments" data-href="' . $link . '" data-width="100%" data-numposts="5"></div>';
     }
 }

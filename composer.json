@@ -22,8 +22,11 @@
         }
     ],
     "require": {
+        "php": "^7.0 || ^8.0",
         "ext-curl": "*",
-        "ext-json": "*"
+        "ext-json": "*",
+        "cocur/slugify": "^4.0",
+        "hashids/hashids": "^4.1"
     },
     "autoload": {
         "psr-4": {

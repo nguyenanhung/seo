@@ -23,16 +23,16 @@ class Utils
     /**
      * Function sendRequest
      *
-     * @param string $url
-     * @param null   $params
-     * @param string $method
+     * @param string                   $url
+     * @param null|array|object|string $params
+     * @param string                   $method
      *
      * @return bool|string|null
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 10/4/19 36:05
      */
-    public static function sendRequest($url = '', $params = NULL, $method = 'GET')
+    public static function sendRequest(string $url = '', $params = null, string $method = 'GET')
     {
         try {
             $method   = strtoupper($method);
@@ -40,7 +40,7 @@ class Utils
             $curl     = curl_init();
             curl_setopt_array($curl, array(
                 CURLOPT_URL            => $endpoint,
-                CURLOPT_RETURNTRANSFER => TRUE,
+                CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING       => "",
                 CURLOPT_MAXREDIRS      => 10,
                 CURLOPT_TIMEOUT        => 30,
@@ -58,18 +58,17 @@ class Utils
                     log_message('error', $message);
                 }
 
-                return NULL;
+                return null;
             } else {
                 return $response;
             }
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             $message = 'Error Code: ' . $e->getCode() . ' - File: ' . $e->getFile() . ' - Line: ' . $e->getLine() . ' - Message: ' . $e->getMessage();
             if (function_exists('log_message')) {
                 log_message('error', $message);
             }
 
-            return NULL;
+            return null;
         }
     }
 }

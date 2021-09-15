@@ -9,7 +9,7 @@
 
 namespace nguyenanhung\SEO\Social;
 
-use nguyenanhung\SEO\ProjectInterface;
+use nguyenanhung\SEO\Environment;
 use nguyenanhung\SEO\Utils;
 use nguyenanhung\SEO\Version;
 
@@ -20,7 +20,7 @@ use nguyenanhung\SEO\Version;
  * @author    713uk13m <dev@nguyenanhung.com>
  * @copyright 713uk13m <dev@nguyenanhung.com>
  */
-class Facebook implements ProjectInterface, FacebookInterface
+class Facebook implements Environment, FacebookInterface
 {
     use Version, SocialTrait;
 
