@@ -25,6 +25,12 @@ class Seo implements Environment
 {
     use Version;
 
+    /** @var string $siteUrl */
+    protected $siteUrl;
+
+    /** @var string Site Ext */
+    private $siteExt = '.html';
+
     /** @var array HashIds Config */
     protected $hashids;
 
@@ -39,6 +45,79 @@ class Seo implements Environment
     }
 
     /**
+     * Function setSiteUrl
+     *
+     * @param string $siteUrl
+     *
+     * @return $this
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 09/15/2021 32:24
+     */
+    public function setSiteUrl(string $siteUrl = ''): Seo
+    {
+        $this->siteUrl = $siteUrl;
+
+        return $this;
+    }
+
+    /**
+     * Function getSiteUrl
+     *
+     * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 09/15/2021 32:19
+     */
+    public function getSiteUrl(): string
+    {
+        return $this->siteUrl;
+    }
+
+    /**
+     * Function getSiteExt
+     *
+     * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 09/15/2021 32:43
+     */
+    public function getSiteExt(): string
+    {
+        return $this->siteExt;
+    }
+
+    /**
+     * Function setHashIds
+     *
+     * @param array $hashIdsConfig
+     *
+     * @return $this
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 09/15/2021 33:15
+     */
+    public function setHashIds(array $hashIdsConfig = []): Seo
+    {
+        $this->hashids = $hashIdsConfig;
+
+        return $this;
+    }
+
+    /**
+     * Function getHashids
+     *
+     * @return array
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 09/15/2021 33:26
+     */
+    public function getHashids(): array
+    {
+        return $this->hashids;
+    }
+
+    /**
      * Function slugify - SEO Slugify
      *
      * @author: 713uk13m <dev@nguyenanhung.com>
@@ -48,7 +127,7 @@ class Seo implements Environment
      *
      * @return string
      */
-    public function slugify($str = ''): string
+    public function slugify(string $str = ''): string
     {
         try {
             $slugify = new Slugify();
@@ -70,7 +149,7 @@ class Seo implements Environment
      *
      * @return string
      */
-    public function search_slugify($str = ''): string
+    public function search_slugify(string $str = ''): string
     {
         try {
             $options = array('separator' => '+');
@@ -92,7 +171,7 @@ class Seo implements Environment
      *
      * @return string
      */
-    public function strToEn($str = ''): string
+    public function strToEn(string $str = ''): string
     {
         try {
             $options = array('separator' => ' ');
@@ -109,15 +188,19 @@ class Seo implements Environment
      *
      * @param $id
      *
-     * @return mixed|string
+     * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 09/15/2021 49:49
+     * @time     : 09/15/2021 28:40
      */
-    public function encodeId($id)
+    public function encodeId($id): string
     {
         try {
-            $hash = new Hashids($this->hashids['salt'], $this->hashids['minHashLength'], $this->hashids['alphabet']);
+            $hash = new Hashids(
+                $this->hashids['salt'],
+                $this->hashids['minHashLength'],
+                $this->hashids['alphabet']
+            );
 
             return $hash->encode($id);
         } catch (Exception $e) {
@@ -133,12 +216,16 @@ class Seo implements Environment
      * @return array|mixed
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 09/15/2021 49:57
+     * @time     : 09/15/2021 28:47
      */
     public function decodeId($string)
     {
         try {
-            $hash   = new Hashids($this->hashids['salt'], $this->hashids['minHashLength'], $this->hashids['alphabet']);
+            $hash   = new Hashids(
+                $this->hashids['salt'],
+                $this->hashids['minHashLength'],
+                $this->hashids['alphabet']
+            );
             $decode = $hash->decode($string);
             if (empty($decode)) {
                 return $string;
@@ -154,35 +241,68 @@ class Seo implements Environment
     }
 
     /**
-     * Function url_post
+     * Function urlPost
      *
-     * @param string $category_slug
-     * @param string $post_slug
-     * @param string $post_id
+     * @param string     $categorySlug
+     * @param string     $postSlug
+     * @param string|int $postId
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 09/15/2021 50:26
+     * @time     : 09/15/2021 36:40
      */
-    public function url_post($category_slug = '', $post_slug = '', $post_id = ''): string
+    public function urlPost(string $categorySlug = '', string $postSlug = '', string $postId = ''): string
     {
-        return site_url(trim($category_slug) . '/' . trim($post_slug) . '-post' . $this->encodeId(trim($post_id)));
+        return $this->siteUrl . trim($categorySlug) . '/' . trim($postSlug) . '-post' . $this->encodeId(trim($postId)) . $this->siteExt;
+    }
+
+    /**
+     * Function url_post
+     *
+     * @param string     $categorySlug
+     * @param string     $postSlug
+     * @param string|int $postId
+     *
+     * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 09/15/2021 36:59
+     */
+    public function url_post(string $categorySlug = '', string $postSlug = '', string $postId = ''): string
+    {
+        return $this->urlPost($categorySlug, $postSlug, $postId);
+    }
+
+    /**
+     * Function urlPage
+     *
+     * @param string     $pageSlug
+     * @param string|int $pageId
+     *
+     * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 09/15/2021 37:38
+     */
+    public function urlPage(string $pageSlug = '', $pageId = ''): string
+    {
+        return $this->siteUrl . trim('pages/' . trim($pageSlug) . '-page' . $this->encodeId(trim($pageId))) . $this->siteExt;
     }
 
     /**
      * Function url_page
      *
-     * @param string $page_slug
-     * @param string $page_id
+     * @param string     $pageSlug
+     * @param string|int $pageId
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 09/15/2021 50:29
+     * @time     : 09/15/2021 38:33
      */
-    public function url_page($page_slug = '', $page_id = ''): string
+    public function url_page(string $pageSlug = '', $pageId = ''): string
     {
-        return site_url('pages/' . trim($page_slug) . '-page' . $this->encodeId(trim($page_id)));
+        return $this->urlPage($pageSlug, $pageId);
     }
 }
