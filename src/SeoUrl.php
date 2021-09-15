@@ -15,13 +15,13 @@ use Cocur\Slugify\Slugify;
 use Hashids\Hashids;
 
 /**
- * Class Seo
+ * Class SeoUrl
  *
  * @package   nguyenanhung\SEO
  * @author    713uk13m <dev@nguyenanhung.com>
  * @copyright 713uk13m <dev@nguyenanhung.com>
  */
-class Seo implements Environment
+class SeoUrl implements Environment
 {
     use Version;
 
@@ -54,7 +54,7 @@ class Seo implements Environment
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/15/2021 32:24
      */
-    public function setSiteUrl(string $siteUrl = ''): Seo
+    public function setSiteUrl(string $siteUrl = ''): SeoUrl
     {
         $this->siteUrl = $siteUrl;
 
@@ -97,7 +97,7 @@ class Seo implements Environment
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/15/2021 33:15
      */
-    public function setHashIds(array $hashIdsConfig = []): Seo
+    public function setHashIds(array $hashIdsConfig = []): SeoUrl
     {
         $this->hashids = $hashIdsConfig;
 
@@ -238,6 +238,65 @@ class Seo implements Environment
         } catch (Exception $e) {
             return $string;
         }
+    }
+
+    /**
+     * Function randomId
+     *
+     * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 09/15/2021 43:30
+     */
+    public function randomId(): string
+    {
+        return uniqid('HungNG_');
+    }
+
+    /**
+     * Function randomNanoId
+     *
+     * @param int $size
+     *
+     * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 09/15/2021 45:44
+     */
+    public function randomNanoId(int $size = 21): string
+    {
+        if (class_exists('Hidehalo\Nanoid\Client')) {
+            /** @var object $client */
+            $client = new Hidehalo\Nanoid\Client();
+
+            return $client->generateId($size);
+        } else {
+            return uniqid('HungNG_');
+        }
+    }
+
+    /**
+     * Function uuidV4
+     *
+     * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 09/15/2021 44:26
+     */
+    public function uuidV4(): string
+    {
+        return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x', // 32 bits for "time_low"
+                       mt_rand(0, 0xffff), mt_rand(0, 0xffff), // 16 bits for "time_mid"
+                       mt_rand(0, 0xffff), // 16 bits for "time_hi_and_version",
+
+            // four most significant bits holds version number 4
+                       mt_rand(0, 0x0fff) | 0x4000, // 16 bits, 8 bits for "clk_seq_hi_res",
+
+            // 8 bits for "clk_seq_low",
+
+            // two most significant bits holds zero and one for variant DCE1.1
+                       mt_rand(0, 0x3fff) | 0x8000, // 48 bits for "node"
+                       mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff));
     }
 
     /**

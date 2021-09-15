@@ -72,7 +72,7 @@ class Facebook implements Environment, FacebookInterface
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 10/4/19 33:41
      */
-    public function getAppId()
+    public function getAppId(): string
     {
         return $this->appId;
     }
@@ -102,7 +102,7 @@ class Facebook implements Environment, FacebookInterface
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 10/4/19 33:52
      */
-    public function getAdminId()
+    public function getAdminId(): string
     {
         return $this->adminId;
     }
@@ -132,7 +132,7 @@ class Facebook implements Environment, FacebookInterface
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 10/4/19 34:03
      */
-    public function getRedirectUrl()
+    public function getRedirectUrl(): string
     {
         return $this->redirectUrl;
     }
@@ -196,7 +196,7 @@ class Facebook implements Environment, FacebookInterface
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 10/4/19 34:23
      */
-    public function commentCount()
+    public function commentCount(): int
     {
         if (is_object($this->graphShare) && isset($this->graphShare->share->comment_count)) {
             $result = $this->graphShare->share->comment_count;
@@ -215,7 +215,7 @@ class Facebook implements Environment, FacebookInterface
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 10/4/19 34:28
      */
-    public function shareCount()
+    public function shareCount(): int
     {
         if (is_object($this->graphShare) && isset($this->graphShare->share->share_count)) {
             $result = $this->graphShare->share->share_count;
