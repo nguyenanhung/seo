@@ -1,9 +1,4 @@
-[![Latest Stable Version](https://poser.pugx.org/nguyenanhung/seo/v/stable)](https://packagist.org/packages/nguyenanhung/seo)
-[![Total Downloads](https://poser.pugx.org/nguyenanhung/seo/downloads)](https://packagist.org/packages/nguyenanhung/seo)
-[![Latest Unstable Version](https://poser.pugx.org/nguyenanhung/seo/v/unstable)](https://packagist.org/packages/nguyenanhung/seo)
-[![composer.lock](https://poser.pugx.org/nguyenanhung/seo/composerlock)](https://packagist.org/packages/nguyenanhung/seo)
-[![License](https://poser.pugx.org/nguyenanhung/seo/license)](https://packagist.org/packages/nguyenanhung/seo)
-
+[![Latest Stable Version](http://poser.pugx.org/nguyenanhung/seo/v)](https://packagist.org/packages/nguyenanhung/seo) [![Total Downloads](http://poser.pugx.org/nguyenanhung/seo/downloads)](https://packagist.org/packages/nguyenanhung/seo) [![Latest Unstable Version](http://poser.pugx.org/nguyenanhung/seo/v/unstable)](https://packagist.org/packages/nguyenanhung/seo) [![License](http://poser.pugx.org/nguyenanhung/seo/license)](https://packagist.org/packages/nguyenanhung/seo) [![PHP Version Require](http://poser.pugx.org/nguyenanhung/seo/require/php)](https://packagist.org/packages/nguyenanhung/seo)
 # Search Engine Optimization Package
 
 ## Version
