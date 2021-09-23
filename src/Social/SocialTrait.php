@@ -15,8 +15,6 @@ namespace nguyenanhung\SEO\Social;
  * @package   nguyenanhung\SEO\Social
  * @author    713uk13m <dev@nguyenanhung.com>
  * @copyright 713uk13m <dev@nguyenanhung.com>
- *
- * @property mixed link
  */
 trait SocialTrait
 {

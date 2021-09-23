@@ -32,7 +32,7 @@ class Utils
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 10/4/19 36:05
      */
-    public static function sendRequest(string $url = '', $params = null, string $method = 'GET')
+    public static function sendRequest($url = '', $params = null, $method = 'GET')
     {
         try {
             $method   = strtoupper($method);
@@ -59,9 +59,9 @@ class Utils
                 }
 
                 return null;
-            } else {
-                return $response;
             }
+
+            return $response;
         } catch (Exception $e) {
             $message = 'Error Code: ' . $e->getCode() . ' - File: ' . $e->getFile() . ' - Line: ' . $e->getLine() . ' - Message: ' . $e->getMessage();
             if (function_exists('log_message')) {

@@ -6,22 +6,33 @@
 
 # Search Engine Optimization Package
 
+## Version
+
+- [x] V1.x, V2.x support all PHP version `>=5.6`
+- [x] V3.x support all PHP version `>=7.0`
+
+## Usage
+
 Một số hàm tiện ích dùng cho SEO Website
 
-##### Get AddThis Script
+### Get AddThis Script
+
 ```php
 <?php
 echo add_this_script('add_this_id');
 
 ```
 
-##### Get Facebook Comment Box
+### Get Facebook Comment Box
+
 ```php
 <?php
 echo facebook_comments('url_comment');
 
 ```
-##### Facebook Social
+
+### Facebook Social
+
 ```php
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
@@ -41,7 +52,8 @@ $data = $fb->graphShare('link')->commentCount();
 
 ```
 
-##### Google Plus
+### Google Plus
+
 ```php
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
@@ -51,7 +63,9 @@ $google = new \nguyenanhung\SEO\Social\GooglePlus();
 $data = $google->createShareLink('link')->getLink();
 
 ```
-##### Twitter
+
+### Twitter
+
 ```php
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
@@ -61,7 +75,7 @@ $twitter = new \nguyenanhung\SEO\Social\Twitter();
 $data = $twitter->createShareLink('link')->getLink();
 ```
 
-### Liên hệ
+## Liên hệ
 
 Nếu có bất cứ thông tin nào cần trao đổi và tìm hiểu, vui lòng liên hệ theo thông tin sau
 

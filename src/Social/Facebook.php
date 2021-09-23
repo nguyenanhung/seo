@@ -26,14 +26,19 @@ class Facebook implements Environment, FacebookInterface
 
     const SHARE_URI = 'https://www.facebook.com/dialog/share';
     const GRAPH_URI = 'https://graph.facebook.com/';
+
     /** @var string Facebook App ID */
     private $appId;
+
     /** @var string List Admin ID, mỗi ID cách nhau 1 dấu , */
     private $adminId;
+
     /** @var string Link chuyển hướng sau khi share link */
     private $redirectUrl;
+
     /** @var string Link dùng để nhúng share trên facebook */
     private $link;
+
     /** @var null|object Object chứa thông tin graph content */
     private $graphShare;
 
@@ -72,7 +77,7 @@ class Facebook implements Environment, FacebookInterface
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 10/4/19 33:41
      */
-    public function getAppId(): string
+    public function getAppId()
     {
         return $this->appId;
     }
@@ -102,7 +107,7 @@ class Facebook implements Environment, FacebookInterface
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 10/4/19 33:52
      */
-    public function getAdminId(): string
+    public function getAdminId()
     {
         return $this->adminId;
     }
@@ -132,7 +137,7 @@ class Facebook implements Environment, FacebookInterface
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 10/4/19 34:03
      */
-    public function getRedirectUrl(): string
+    public function getRedirectUrl()
     {
         return $this->redirectUrl;
     }
@@ -196,7 +201,7 @@ class Facebook implements Environment, FacebookInterface
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 10/4/19 34:23
      */
-    public function commentCount(): int
+    public function commentCount()
     {
         if (is_object($this->graphShare) && isset($this->graphShare->share->comment_count)) {
             $result = $this->graphShare->share->comment_count;
@@ -215,7 +220,7 @@ class Facebook implements Environment, FacebookInterface
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 10/4/19 34:28
      */
-    public function shareCount(): int
+    public function shareCount()
     {
         if (is_object($this->graphShare) && isset($this->graphShare->share->share_count)) {
             $result = $this->graphShare->share->share_count;
