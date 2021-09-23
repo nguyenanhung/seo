@@ -32,7 +32,7 @@ class Utils
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 10/4/19 36:05
      */
-    public static function sendRequest($url = '', $params = null, $method = 'GET')
+    public static function sendRequest(string $url = '', $params = null, string $method = 'GET')
     {
         try {
             $method   = strtoupper($method);

@@ -20,7 +20,7 @@ use nguyenanhung\SEO\Version;
  * @author    713uk13m <dev@nguyenanhung.com>
  * @copyright 713uk13m <dev@nguyenanhung.com>
  */
-class Facebook implements Environment, FacebookInterface
+class Facebook implements Environment
 {
     use Version, SocialTrait;
 
@@ -57,12 +57,12 @@ class Facebook implements Environment, FacebookInterface
      *
      * @param string $appId
      *
-     * @return $this|\nguyenanhung\SEO\Social\FacebookInterface
+     * @return $this
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 10/4/19 33:35
+     * @time     : 09/24/2021 06:58
      */
-    public function setAppId($appId = '')
+    public function setAppId(string $appId = ''): Facebook
     {
         $this->appId = $appId;
 
@@ -77,7 +77,7 @@ class Facebook implements Environment, FacebookInterface
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 10/4/19 33:41
      */
-    public function getAppId()
+    public function getAppId(): string
     {
         return $this->appId;
     }
@@ -87,12 +87,12 @@ class Facebook implements Environment, FacebookInterface
      *
      * @param string $adminId
      *
-     * @return $this|\nguyenanhung\SEO\Social\FacebookInterface
+     * @return $this
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 10/4/19 33:46
+     * @time     : 09/24/2021 07:05
      */
-    public function setAdminId($adminId = '')
+    public function setAdminId(string $adminId = ''): Facebook
     {
         $this->adminId = $adminId;
 
@@ -107,7 +107,7 @@ class Facebook implements Environment, FacebookInterface
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 10/4/19 33:52
      */
-    public function getAdminId()
+    public function getAdminId(): string
     {
         return $this->adminId;
     }
@@ -117,12 +117,12 @@ class Facebook implements Environment, FacebookInterface
      *
      * @param string $redirectUrl
      *
-     * @return $this|\nguyenanhung\SEO\Social\FacebookInterface
+     * @return $this
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 10/4/19 33:57
+     * @time     : 09/24/2021 07:14
      */
-    public function setRedirectUrl($redirectUrl = '')
+    public function setRedirectUrl(string $redirectUrl = ''): Facebook
     {
         $this->redirectUrl = $redirectUrl;
 
@@ -135,9 +135,9 @@ class Facebook implements Environment, FacebookInterface
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 10/4/19 34:03
+     * @time     : 09/24/2021 07:20
      */
-    public function getRedirectUrl()
+    public function getRedirectUrl(): string
     {
         return $this->redirectUrl;
     }
@@ -148,12 +148,12 @@ class Facebook implements Environment, FacebookInterface
      * @param string $url
      * @param string $caption
      *
-     * @return $this|\nguyenanhung\SEO\Social\FacebookInterface
+     * @return $this
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 10/4/19 34:08
+     * @time     : 09/24/2021 07:23
      */
-    public function createShareLink($url = '', $caption = '')
+    public function createShareLink(string $url = '', string $caption = ''): Facebook
     {
         if (empty($caption) && !empty($this->redirectUrl)) {
             $parseUrl = parse_url($this->redirectUrl);
@@ -175,12 +175,12 @@ class Facebook implements Environment, FacebookInterface
      *
      * @param string $url
      *
-     * @return $this|\nguyenanhung\SEO\Social\FacebookInterface
+     * @return $this
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 10/4/19 34:18
+     * @time     : 09/24/2021 07:30
      */
-    public function graphShare($url = '')
+    public function graphShare(string $url = ''): Facebook
     {
         $params  = array('id' => $url);
         $request = Utils::sendRequest(self::GRAPH_URI, $params);
@@ -199,9 +199,9 @@ class Facebook implements Environment, FacebookInterface
      * @return int
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 10/4/19 34:23
+     * @time     : 09/24/2021 07:36
      */
-    public function commentCount()
+    public function commentCount(): int
     {
         if (is_object($this->graphShare) && isset($this->graphShare->share->comment_count)) {
             $result = $this->graphShare->share->comment_count;
@@ -218,9 +218,9 @@ class Facebook implements Environment, FacebookInterface
      * @return int
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 10/4/19 34:28
+     * @time     : 09/24/2021 07:40
      */
-    public function shareCount()
+    public function shareCount(): int
     {
         if (is_object($this->graphShare) && isset($this->graphShare->share->share_count)) {
             $result = $this->graphShare->share->share_count;

@@ -54,7 +54,7 @@ class SeoUrl implements Environment
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/15/2021 32:24
      */
-    public function setSiteUrl($siteUrl = '')
+    public function setSiteUrl(string $siteUrl = ''): SeoUrl
     {
         $this->siteUrl = $siteUrl;
 
@@ -69,7 +69,7 @@ class SeoUrl implements Environment
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/15/2021 32:19
      */
-    public function getSiteUrl()
+    public function getSiteUrl(): string
     {
         return $this->siteUrl;
     }
@@ -82,7 +82,7 @@ class SeoUrl implements Environment
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/15/2021 32:43
      */
-    public function getSiteExt()
+    public function getSiteExt(): string
     {
         return $this->siteExt;
     }
@@ -97,7 +97,7 @@ class SeoUrl implements Environment
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/15/2021 33:15
      */
-    public function setHashIds($hashIdsConfig = [])
+    public function setHashIds(array $hashIdsConfig = []): SeoUrl
     {
         $this->hashids = $hashIdsConfig;
 
@@ -112,7 +112,7 @@ class SeoUrl implements Environment
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/15/2021 33:26
      */
-    public function getHashids()
+    public function getHashids(): array
     {
         return $this->hashids;
     }
@@ -127,7 +127,7 @@ class SeoUrl implements Environment
      *
      * @return string
      */
-    public function slugify($str = '')
+    public function slugify(string $str = ''): string
     {
         try {
             $slugify = new Slugify();
@@ -149,7 +149,7 @@ class SeoUrl implements Environment
      *
      * @return string
      */
-    public function search_slugify($str = '')
+    public function search_slugify(string $str = ''): string
     {
         try {
             $options = array('separator' => '+');
@@ -171,7 +171,7 @@ class SeoUrl implements Environment
      *
      * @return string
      */
-    public function strToEn($str = '')
+    public function strToEn(string $str = ''): string
     {
         try {
             $options = array('separator' => ' ');
@@ -193,7 +193,7 @@ class SeoUrl implements Environment
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/15/2021 28:40
      */
-    public function encodeId($id)
+    public function encodeId($id): string
     {
         try {
             $hash = new Hashids(
@@ -248,7 +248,7 @@ class SeoUrl implements Environment
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/15/2021 43:30
      */
-    public function randomId()
+    public function randomId(): string
     {
         return uniqid('HungNG_', true);
     }
@@ -263,7 +263,7 @@ class SeoUrl implements Environment
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/15/2021 45:44
      */
-    public function randomNanoId($size = 21)
+    public function randomNanoId(int $size = 21): string
     {
         if (class_exists('Hidehalo\Nanoid\Client')) {
             /** @var object $client */
@@ -279,24 +279,25 @@ class SeoUrl implements Environment
      * Function uuidV4
      *
      * @return string
+     * @throws \Exception
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 09/15/2021 44:26
+     * @time     : 09/24/2021 04:30
      */
-    public function uuidV4()
+    public function uuidV4(): string
     {
         return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x', // 32 bits for "time_low"
-                       mt_rand(0, 0xffff), mt_rand(0, 0xffff), // 16 bits for "time_mid"
-                       mt_rand(0, 0xffff), // 16 bits for "time_hi_and_version",
+                       random_int(0, 0xffff), random_int(0, 0xffff), // 16 bits for "time_mid"
+                       random_int(0, 0xffff), // 16 bits for "time_hi_and_version",
 
             // four most significant bits holds version number 4
-                       mt_rand(0, 0x0fff) | 0x4000, // 16 bits, 8 bits for "clk_seq_hi_res",
+                       random_int(0, 0x0fff) | 0x4000, // 16 bits, 8 bits for "clk_seq_hi_res",
 
             // 8 bits for "clk_seq_low",
 
             // two most significant bits holds zero and one for variant DCE1.1
-                       mt_rand(0, 0x3fff) | 0x8000, // 48 bits for "node"
-                       mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff));
+                       random_int(0, 0x3fff) | 0x8000, // 48 bits for "node"
+                       random_int(0, 0xffff), random_int(0, 0xffff), random_int(0, 0xffff));
     }
 
     /**
@@ -311,7 +312,7 @@ class SeoUrl implements Environment
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/15/2021 36:40
      */
-    public function urlPost($categorySlug = '', $postSlug = '', $postId = '')
+    public function urlPost(string $categorySlug = '', string $postSlug = '', $postId = ''): string
     {
         return $this->siteUrl . trim($categorySlug) . '/' . trim($postSlug) . '-post' . $this->encodeId(trim($postId)) . $this->siteExt;
     }
@@ -328,7 +329,7 @@ class SeoUrl implements Environment
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/15/2021 36:59
      */
-    public function url_post($categorySlug = '', $postSlug = '', $postId = '')
+    public function url_post(string $categorySlug = '', string $postSlug = '', $postId = ''): string
     {
         return $this->urlPost($categorySlug, $postSlug, $postId);
     }
@@ -344,7 +345,7 @@ class SeoUrl implements Environment
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/15/2021 37:38
      */
-    public function urlPage($pageSlug = '', $pageId = '')
+    public function urlPage(string $pageSlug = '', $pageId = ''): string
     {
         return $this->siteUrl . trim('pages/' . trim($pageSlug) . '-page' . $this->encodeId(trim($pageId))) . $this->siteExt;
     }
@@ -360,7 +361,7 @@ class SeoUrl implements Environment
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/15/2021 38:33
      */
-    public function url_page($pageSlug = '', $pageId = '')
+    public function url_page(string $pageSlug = '', $pageId = ''): string
     {
         return $this->urlPage($pageSlug, $pageId);
     }
@@ -375,7 +376,7 @@ class SeoUrl implements Environment
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/15/2021 48:50
      */
-    public function urlEncode($url = '')
+    public function urlEncode(string $url = ''): string
     {
         return urlencode($url);
     }
@@ -390,7 +391,7 @@ class SeoUrl implements Environment
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/15/2021 49:16
      */
-    public function urlDecode($url)
+    public function urlDecode(string $url): string
     {
         return urldecode($url);
     }
@@ -405,7 +406,7 @@ class SeoUrl implements Environment
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/15/2021 49:53
      */
-    public function parseUrl($url = 'https://nguyenanhung.com/')
+    public function parseUrl(string $url = 'https://nguyenanhung.com/')
     {
         return parse_url($url);
     }

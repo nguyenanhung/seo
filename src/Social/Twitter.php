@@ -19,7 +19,7 @@ use nguyenanhung\SEO\Version;
  * @author    713uk13m <dev@nguyenanhung.com>
  * @copyright 713uk13m <dev@nguyenanhung.com>
  */
-class Twitter implements Environment, TwitterInterface
+class Twitter implements Environment
 {
     use Version, SocialTrait;
 
@@ -44,12 +44,12 @@ class Twitter implements Environment, TwitterInterface
      * @param string $text
      * @param string $referer
      *
-     * @return $this|\nguyenanhung\SEO\Social\TwitterInterface
+     * @return $this
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 10/4/19 35:40
+     * @time     : 09/24/2021 06:14
      */
-    public function createShareLink($url = '', $text = '', $referer = '')
+    public function createShareLink(string $url = '', string $text = '', string $referer = ''): Twitter
     {
         if (empty($referer)) {
             $referer = $url;
