@@ -12,7 +12,7 @@ namespace nguyenanhung\SEO;
 
 use Exception;
 use Cocur\Slugify\Slugify;
-use Hashids\Hashids;
+use nguyenanhung\Libraries\Hashids\HashIds;
 
 /**
  * Class SeoUrl
@@ -196,13 +196,10 @@ class SeoUrl implements Environment
     public function encodeId($id): string
     {
         try {
-            $hash = new Hashids(
-                $this->hashids['salt'],
-                $this->hashids['minHashLength'],
-                $this->hashids['alphabet']
-            );
+            $hash = new Hashids();
+            $hash->setConfig($this->hashids);
 
-            return $hash->encode($id);
+            return $hash->encodeId($id);
         } catch (Exception $e) {
             return $id;
         }
@@ -221,20 +218,10 @@ class SeoUrl implements Environment
     public function decodeId($string)
     {
         try {
-            $hash   = new Hashids(
-                $this->hashids['salt'],
-                $this->hashids['minHashLength'],
-                $this->hashids['alphabet']
-            );
-            $decode = $hash->decode($string);
-            if (empty($decode)) {
-                return $string;
-            }
-            if (count($decode) > 1) {
-                return $decode;
-            }
+            $hash = new Hashids();
+            $hash->setConfig($this->hashids);
 
-            return $decode[0];
+            return $hash->decodeId($string);
         } catch (Exception $e) {
             return $string;
         }
