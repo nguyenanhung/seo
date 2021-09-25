@@ -128,7 +128,7 @@ class SeoUrl implements Environment
      */
     public function slugify(string $str = ''): string
     {
-        return new (new SlugUrl())->slugify($str);
+        return (new SlugUrl())->slugify($str);
     }
 
     /**
@@ -143,7 +143,7 @@ class SeoUrl implements Environment
      */
     public function search_slugify(string $str = ''): string
     {
-        return new (new SlugUrl())->searchSlugify($str);
+        return (new SlugUrl())->searchSlugify($str);
     }
 
     /**
@@ -158,7 +158,7 @@ class SeoUrl implements Environment
      */
     public function strToEn(string $str = ''): string
     {
-        return new (new SlugUrl())->toEnglish($str);
+        return (new SlugUrl())->toEnglish($str);
     }
 
     /**
