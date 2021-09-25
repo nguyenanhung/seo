@@ -10,9 +10,8 @@
 
 namespace nguyenanhung\SEO;
 
-use Exception;
-use Cocur\Slugify\Slugify;
 use nguyenanhung\Libraries\Hashids\HashIds;
+use nguyenanhung\Libraries\Slug\SlugUrl;
 
 /**
  * Class SeoUrl
@@ -129,14 +128,7 @@ class SeoUrl implements Environment
      */
     public function slugify(string $str = ''): string
     {
-        try {
-            $slugify = new Slugify();
-
-            return $slugify->slugify($str);
-        } catch (Exception $e) {
-            return trim($str);
-        }
-
+        return new (new SlugUrl())->slugify($str);
     }
 
     /**
@@ -151,14 +143,7 @@ class SeoUrl implements Environment
      */
     public function search_slugify(string $str = ''): string
     {
-        try {
-            $options = array('separator' => '+');
-            $slugify = new Slugify($options);
-
-            return $slugify->slugify($str);
-        } catch (Exception $e) {
-            return trim($str);
-        }
+        return new (new SlugUrl())->searchSlugify($str);
     }
 
     /**
@@ -173,14 +158,7 @@ class SeoUrl implements Environment
      */
     public function strToEn(string $str = ''): string
     {
-        try {
-            $options = array('separator' => ' ');
-            $slugify = new Slugify($options);
-
-            return $slugify->slugify($str);
-        } catch (Exception $e) {
-            return trim($str);
-        }
+        return new (new SlugUrl())->toEnglish($str);
     }
 
     /**
@@ -195,14 +173,10 @@ class SeoUrl implements Environment
      */
     public function encodeId($id): string
     {
-        try {
-            $hash = new Hashids();
-            $hash->setConfig($this->hashids);
+        $hash = new Hashids();
+        $hash->setConfig($this->hashids);
 
-            return $hash->encodeId($id);
-        } catch (Exception $e) {
-            return $id;
-        }
+        return $hash->encodeId($id);
     }
 
     /**
@@ -217,14 +191,10 @@ class SeoUrl implements Environment
      */
     public function decodeId($string)
     {
-        try {
-            $hash = new Hashids();
-            $hash->setConfig($this->hashids);
+        $hash = new Hashids();
+        $hash->setConfig($this->hashids);
 
-            return $hash->decodeId($string);
-        } catch (Exception $e) {
-            return $string;
-        }
+        return $hash->decodeId($string);
     }
 
     /**
