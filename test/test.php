@@ -28,11 +28,11 @@ echo "Slugify: " . $seo->slugify($title) . PHP_EOL;
 echo "search_slugify: " . $seo->search_slugify($title) . PHP_EOL;
 echo "strToEn: " . $seo->strToEn($title) . PHP_EOL;
 echo "randomId: " . $seo->randomId() . PHP_EOL;
-echo "uuidV4: " . $seo->uuidV4() . PHP_EOL;
 
 echo "fromId: " . $id . PHP_EOL;
-echo "encodeId: " . $seo->encodeId($id) . PHP_EOL;
-echo "decodeId: " . $seo->decodeId($seo->encodeId($id)) . PHP_EOL;
+$encodeId = $seo->encodeId($id);
+echo "encodeId: " . $encodeId . PHP_EOL;
+echo "decodeId: " . $seo->decodeId($encodeId) . PHP_EOL;
 
 echo "URL POST: " . $seo->urlPost('test', 'post-name', $id) . PHP_EOL;
 echo "URL PAGE: " . $seo->urlPage('post-name', $id) . PHP_EOL;
