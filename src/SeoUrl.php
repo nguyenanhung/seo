@@ -10,9 +10,8 @@
 
 namespace nguyenanhung\SEO;
 
-use Exception;
-use Cocur\Slugify\Slugify;
-use Hashids\Hashids;
+use nguyenanhung\Libraries\Slug\SlugUrl;
+use nguyenanhung\Libraries\Hashids\HashIds;
 
 /**
  * Class SeoUrl
@@ -129,14 +128,7 @@ class SeoUrl implements Environment
      */
     public function slugify($str = '')
     {
-        try {
-            $slugify = new Slugify();
-
-            return $slugify->slugify($str);
-        } catch (Exception $e) {
-            return trim($str);
-        }
-
+        return (new SlugUrl())->slugify($str);
     }
 
     /**
@@ -151,14 +143,7 @@ class SeoUrl implements Environment
      */
     public function search_slugify($str = '')
     {
-        try {
-            $options = array('separator' => '+');
-            $slugify = new Slugify($options);
-
-            return $slugify->slugify($str);
-        } catch (Exception $e) {
-            return trim($str);
-        }
+        return (new SlugUrl())->searchSlugify($str);
     }
 
     /**
@@ -173,14 +158,7 @@ class SeoUrl implements Environment
      */
     public function strToEn($str = '')
     {
-        try {
-            $options = array('separator' => ' ');
-            $slugify = new Slugify($options);
-
-            return $slugify->slugify($str);
-        } catch (Exception $e) {
-            return trim($str);
-        }
+        return (new SlugUrl())->toEnglish($str);
     }
 
     /**
@@ -195,17 +173,10 @@ class SeoUrl implements Environment
      */
     public function encodeId($id)
     {
-        try {
-            $hash = new Hashids(
-                $this->hashids['salt'],
-                $this->hashids['minHashLength'],
-                $this->hashids['alphabet']
-            );
+        $hash = new Hashids();
+        $hash->setConfig($this->hashids);
 
-            return $hash->encode($id);
-        } catch (Exception $e) {
-            return $id;
-        }
+        return $hash->encodeId($id);
     }
 
     /**
@@ -216,28 +187,14 @@ class SeoUrl implements Environment
      * @return array|mixed
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 09/15/2021 28:47
+     * @time     : 09/25/2021 12:38
      */
     public function decodeId($string)
     {
-        try {
-            $hash   = new Hashids(
-                $this->hashids['salt'],
-                $this->hashids['minHashLength'],
-                $this->hashids['alphabet']
-            );
-            $decode = $hash->decode($string);
-            if (empty($decode)) {
-                return $string;
-            }
-            if (count($decode) > 1) {
-                return $decode;
-            }
+        $hash = new Hashids();
+        $hash->setConfig($this->hashids);
 
-            return $decode[0];
-        } catch (Exception $e) {
-            return $string;
-        }
+        return $hash->decodeId($string);
     }
 
     /**
