@@ -173,8 +173,9 @@ class SeoUrl implements Environment
      */
     public function encodeId($id): string
     {
-        $hash = new Hashids();
-        $hash->setConfig($this->hashids);
+        $hash   = new Hashids();
+        $config = !is_array($this->hashids) ? array() : $this->hashids;
+        $hash->setConfig($config);
 
         return $hash->encodeId($id);
     }
@@ -191,8 +192,9 @@ class SeoUrl implements Environment
      */
     public function decodeId($string)
     {
-        $hash = new Hashids();
-        $hash->setConfig($this->hashids);
+        $hash   = new Hashids();
+        $config = !is_array($this->hashids) ? array() : $this->hashids;
+        $hash->setConfig($config);
 
         return $hash->decodeId($string);
     }
