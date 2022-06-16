@@ -25,7 +25,7 @@ class GooglePlus implements Environment
 
     const SHARE_URI = 'https://plus.google.com/share';
     /** @var string Link dùng để nhúng share trên Google+ */
-    private $link;
+    protected $link;
 
     /**
      * GooglePlus constructor.
