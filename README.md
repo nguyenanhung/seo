@@ -1,4 +1,5 @@
 [![Latest Stable Version](http://poser.pugx.org/nguyenanhung/seo/v)](https://packagist.org/packages/nguyenanhung/seo) [![Total Downloads](http://poser.pugx.org/nguyenanhung/seo/downloads)](https://packagist.org/packages/nguyenanhung/seo) [![Latest Unstable Version](http://poser.pugx.org/nguyenanhung/seo/v/unstable)](https://packagist.org/packages/nguyenanhung/seo) [![License](http://poser.pugx.org/nguyenanhung/seo/license)](https://packagist.org/packages/nguyenanhung/seo) [![PHP Version Require](http://poser.pugx.org/nguyenanhung/seo/require/php)](https://packagist.org/packages/nguyenanhung/seo)
+
 # Search Engine Optimization Package
 
 ## Version
@@ -75,7 +76,7 @@ $data = $twitter->createShareLink('link')->getLink();
 Nếu có bất cứ thông tin nào cần trao đổi và tìm hiểu, vui lòng liên hệ theo thông tin sau
 
 | Name        | Email                | Skype            | Facebook      |
-| ----------- | -------------------- | ---------------- | ------------- |
+|-------------|----------------------|------------------|---------------|
 | Hung Nguyen | dev@nguyenanhung.com | nguyenanhung5891 | @nguyenanhung |
 
 From Hanoi with Love <3
