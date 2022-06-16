@@ -28,13 +28,13 @@ class SeoUrl implements Environment
     const HASH_IDS_CONFIG_KEY = 'hashIdsConfig';
 
     /** @var array SDK Config */
-    private $sdkConfig;
+    protected $sdkConfig;
 
     /** @var string $siteUrl */
     protected $siteUrl;
 
     /** @var string Site Ext */
-    private $siteExt = '.html';
+    protected $siteExt = '.html';
 
     /** @var array HashIds Config */
     protected $hashids;

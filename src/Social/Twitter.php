@@ -25,7 +25,7 @@ class Twitter implements Environment, TwitterInterface
 
     const SHARE_URI = 'https://twitter.com/intent/tweet';
     /** @var string Link dùng để nhúng share trên twitter */
-    private $link;
+    protected $link;
 
     /**
      * Twitter constructor.
