@@ -21,10 +21,10 @@ trait SocialTrait
     /**
      * Function getLink
      *
-     * @return mixed
+     * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 10/4/19 35:54
+     * @time     : 16/06/2022 01:08\
      */
     public function getLink()
     {

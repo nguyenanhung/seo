@@ -24,6 +24,12 @@ class SeoUrl implements Environment
 {
     use Version;
 
+    const HANDLE_CONFIG_KEY   = 'CONFIG_HANDLE';
+    const HASH_IDS_CONFIG_KEY = 'hashIdsConfig';
+
+    /** @var array SDK Config */
+    private $sdkConfig;
+
     /** @var string $siteUrl */
     protected $siteUrl;
 
@@ -41,6 +47,51 @@ class SeoUrl implements Environment
      */
     public function __construct()
     {
+    }
+
+    /**
+     * Function setSdkConfig
+     *
+     * @param array $sdkConfig
+     *
+     * @return $this
+     * @author: 713uk13m <dev@nguyenanhung.com>
+     * @time  : 2018-12-09 14:04
+     *
+     */
+    public function setSdkConfig($sdkConfig = array())
+    {
+        $this->sdkConfig = $sdkConfig;
+
+        return $this;
+    }
+
+    /**
+     * Function getSdkConfig
+     *
+     * @return array
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 08/30/2021 02:24
+     */
+    public function getSdkConfig()
+    {
+        return $this->sdkConfig;
+    }
+
+    /**
+     * Function getPageNumber
+     *
+     * @param string $pageNumber
+     *
+     * @return array|string|string[]
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 08/30/2021 02:48
+     */
+    public function getPageNumber($pageNumber = '')
+    {
+        return str_replace('trang-', '', trim($pageNumber));
     }
 
     /**
@@ -84,6 +135,189 @@ class SeoUrl implements Environment
     public function getSiteExt()
     {
         return $this->siteExt;
+    }
+
+    /**
+     * Function baseUrl
+     *
+     * @param string $uri
+     *
+     * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 07/25/2020 00:48
+     */
+    public function baseUrl($uri = '')
+    {
+        $uri = trim($uri);
+        if (empty($uri)) {
+            return $this->homeUrl();
+        }
+
+        return $this->homeUrl() . trim($uri);
+    }
+
+    /**
+     * Function siteUrl
+     *
+     * @param $uri
+     * @param $protocol
+     *
+     * @return false|string|null
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 16/06/2022 13:54
+     */
+    public function siteUrl($uri = '', $protocol = '')
+    {
+        if (!isset($uri)) {
+            $base_url = null;
+        } elseif (trim($uri) === '') {
+            $base_url = '';
+        } else {
+            $base_url = rtrim($uri, '/') . '/';
+        }
+        if (isset($protocol)) {
+            // For protocol-relative links
+            if ($protocol === '') {
+                $base_url = substr($base_url, strpos($base_url, '//'));
+            } else {
+                $base_url = $protocol . substr($base_url, strpos($base_url, '://'));
+            }
+        }
+        if (empty($uri)) {
+            return $base_url;
+        }
+        if (is_array($uri)) {
+            $uri = http_build_query($uri);
+        }
+        $suffix = $this->getSiteExt();
+        if ($suffix !== '') {
+            if (($offset = strpos($uri, '?')) !== false) {
+                $uri = substr($uri, 0, $offset) . $suffix . substr($uri, $offset);
+            } else {
+                $uri .= $suffix;
+            }
+        }
+
+        return trim($base_url) . trim($uri);
+
+    }
+
+    /**
+     * Function assetsUrl
+     *
+     * @param string $uri
+     *
+     * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 07/25/2020 00:54
+     */
+    public function assetsUrl($uri = '')
+    {
+        $uri = trim($uri);
+        if (empty($uri)) {
+            return $this->sdkConfig[self::HANDLE_CONFIG_KEY]['static_url'];
+        }
+
+        return $this->sdkConfig[self::HANDLE_CONFIG_KEY]['static_url'] . trim($uri);
+    }
+
+    /**
+     * Function assetsUrlThemes
+     *
+     * @param string $themes
+     * @param string $uri
+     * @param string $assetFolder
+     *
+     * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 09/09/2021 17:17
+     */
+    public function assetsUrlThemes($themes = '', $uri = '', $assetFolder = 'yes')
+    {
+        $assetFolder = strtolower($assetFolder);
+        $assetsPath  = 'assets/themes/';
+        // Pattern
+        if ($themes != '') {
+            if ($assetFolder == 'no') {
+                $uri = ($themes . '/' . $uri);
+            } else {
+                $uri = ($themes . '/assets/' . $uri);
+            }
+        } else {
+            if ($assetFolder == 'no') {
+                $uri = trim($uri);
+            } else {
+                $uri = ('assets/' . $uri);
+            }
+        }
+
+        return $this->baseUrl($assetsPath . $uri);
+    }
+
+    /**
+     * Function faviconUrl
+     *
+     * @param string $uri
+     *
+     * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 07/25/2020 01:04
+     */
+    public function faviconUrl($uri = '')
+    {
+        return $this->assetsUrl('fav/' . $uri);
+    }
+
+    /**
+     * Function imageUrl
+     *
+     * @param string $input
+     *
+     * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 07/25/2020 01:08
+     */
+    public function imageUrl($input = '')
+    {
+        $config    = [
+            'no_thumb' => [
+                'images/system/no_avatar.jpg',
+                'images/system/no_avatar_100x100.jpg',
+                'images/system/no_video_available.jpg',
+                'images/system/no_video_available_thumb.jpg',
+                'images/system/no-image-available.jpg',
+                'images/system/no-image-available_60.jpg',
+                'images/system/no-image-available_330.jpg'
+            ]
+        ];
+        $assetsUrl = $this->sdkConfig[self::HANDLE_CONFIG_KEY]['assets_url'];
+        $staticUrl = $this->sdkConfig[self::HANDLE_CONFIG_KEY]['static_url'];
+        $imageUrl  = trim($input);
+        if (!empty($imageUrl)) {
+            $noThumbnail = $config['no_thumb'];
+            if (in_array($imageUrl, $noThumbnail)) {
+                return $assetsUrl . trim($imageUrl);
+            } else {
+                $parse_input = parse_url($imageUrl);
+                if (isset($parse_input['host'])) {
+                    return $imageUrl;
+                } else {
+                    if (trim(mb_substr($imageUrl, 0, 12)) == 'crawler-news') {
+                        $imageUrl = trim('uploads/' . $imageUrl);
+                    }
+
+                    return $staticUrl . $imageUrl;
+                }
+            }
+        }
+
+        return $imageUrl;
     }
 
     /**
@@ -270,7 +504,7 @@ class SeoUrl implements Environment
      */
     public function urlPost($categorySlug = '', $postSlug = '', $postId = '')
     {
-        return $this->siteUrl . trim($categorySlug) . '/' . trim($postSlug) . '-post' . $this->encodeId(trim($postId)) . $this->siteExt;
+        return $this->homeUrl() . trim($categorySlug) . '/' . trim($postSlug) . '-post' . $this->encodeId(trim($postId)) . $this->siteExt;
     }
 
     /**
@@ -291,6 +525,23 @@ class SeoUrl implements Environment
     }
 
     /**
+     * Function urlPostShare
+     *
+     * @param string $postId
+     *
+     * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 08/30/2021 09:20
+     */
+    public function urlPostShare($postId = '')
+    {
+        $home = $this->homeUrl();
+
+        return $home . 'post/' . $this->encodeId($postId) . $this->siteExt;
+    }
+
+    /**
      * Function urlPage
      *
      * @param string     $pageSlug
@@ -303,7 +554,7 @@ class SeoUrl implements Environment
      */
     public function urlPage($pageSlug = '', $pageId = '')
     {
-        return $this->siteUrl . trim('pages/' . trim($pageSlug) . '-page' . $this->encodeId(trim($pageId))) . $this->siteExt;
+        return $this->homeUrl() . trim('pages/' . trim($pageSlug) . '-page' . $this->encodeId(trim($pageId))) . $this->siteExt;
     }
 
     /**
@@ -320,6 +571,127 @@ class SeoUrl implements Environment
     public function url_page($pageSlug = '', $pageId = '')
     {
         return $this->urlPage($pageSlug, $pageId);
+    }
+
+    /**
+     * Function urlPageShare
+     *
+     * @param string $pageId
+     *
+     * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 07/25/2020 03:39
+     */
+    public function urlPageShare($pageId = '')
+    {
+        $home   = $this->homeUrl();
+        $pageId = trim($pageId);
+        if (empty($pageId)) {
+            return $home;
+        }
+
+        return $home . 'p/' . $this->encodeId($pageId) . $this->siteExt;
+    }
+
+    /**
+     * Function helpPage
+     *
+     * @param string $slug
+     *
+     * @return bool|string|null
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 07/25/2020 03:43
+     */
+    public function helpPage($slug = '')
+    {
+        $slug = trim($slug);
+        if (empty($slug)) {
+            return $this->homeUrl();
+        }
+
+        return $this->homeUrl() . 'help/' . trim($slug) . $this->siteExt;
+    }
+
+    /**
+     * Function urlCategory
+     *
+     * @param string $categorySlug
+     *
+     * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 07/25/2020 03:48
+     */
+    public function urlCategory($categorySlug = '')
+    {
+        $categorySlug = trim($categorySlug);
+        if (empty($categorySlug)) {
+            return $this->homeUrl();
+        }
+
+        return $this->homeUrl() . trim($categorySlug) . $this->siteExt;
+    }
+
+    /**
+     * Function urlTopic
+     *
+     * @param string $topicSlug
+     *
+     * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 07/25/2020 03:52
+     */
+    public function urlTopic($topicSlug = '')
+    {
+        $topicSlug = trim($topicSlug);
+        if (empty($topicSlug)) {
+            return $this->homeUrl();
+        }
+
+        return $this->homeUrl() . 'chu-de/' . trim($topicSlug) . $this->siteExt;
+    }
+
+    /**
+     * Function urlTags
+     *
+     * @param string $tagSlug
+     *
+     * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 07/25/2020 03:56
+     */
+    public function urlTags($tagSlug = '')
+    {
+        $tagSlug = trim($tagSlug);
+        if (empty($tagSlug)) {
+            return $this->homeUrl();
+        }
+
+        return $this->homeUrl() . 'tags/' . trim($tagSlug) . $this->siteExt;
+    }
+
+    /**
+     * Function urlChannels
+     *
+     * @param string $channelCode
+     *
+     * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 07/26/2020 31:52
+     */
+    public function urlChannels($channelCode = '')
+    {
+        $channelCode = trim($channelCode);
+        if (empty($channelCode)) {
+            return $this->homeUrl();
+        }
+
+        return $this->homeUrl() . 'channel/' . trim($channelCode) . $this->siteExt;
     }
 
     /**
@@ -365,5 +737,37 @@ class SeoUrl implements Environment
     public function parseUrl($url = 'https://nguyenanhung.com/')
     {
         return parse_url($url);
+    }
+
+    /**
+     * Function cleanText
+     *
+     * @param string $str
+     *
+     * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 07/25/2020 02:58
+     */
+    public function cleanText($str = '')
+    {
+        return html_entity_decode($str);
+    }
+
+    /**
+     * Function homeUrl
+     *
+     * @return mixed|string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 16/06/2022 08:13
+     */
+    public function homeUrl()
+    {
+        if (isset($this->sdkConfig[self::HANDLE_CONFIG_KEY]['homepage'])) {
+            return $this->sdkConfig[self::HANDLE_CONFIG_KEY]['homepage'];
+        }
+
+        return $this->siteUrl;
     }
 }

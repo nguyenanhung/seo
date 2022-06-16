@@ -26,7 +26,8 @@
         "ext-curl": "*",
         "ext-json": "*",
         "nguyenanhung/slug-helper": "^1.0",
-        "nguyenanhung/hashids-helper": "^1.0"
+        "nguyenanhung/hashids-helper": "^1.0",
+        "ext-mbstring": "*"
     },
     "require-dev": {
         "kint-php/kint": ">=3.0"
@@ -42,6 +43,6 @@
     "suggest": {
         "ext-curl": "Need support CURL",
         "ext-json": "Need support JSON",
-        "hidehalo/nanoid-php": "Need support for helper function randomNanoId()"
+        "nguyenanhung/nanoid-helper": "Need support for helper function randomNanoId()"
     }
 }
