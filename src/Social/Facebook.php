@@ -28,19 +28,19 @@ class Facebook implements Environment
     const GRAPH_URI = 'https://graph.facebook.com/';
 
     /** @var string Facebook App ID */
-    private $appId;
+    protected $appId;
 
     /** @var string List Admin ID, mỗi ID cách nhau 1 dấu , */
-    private $adminId;
+    protected $adminId;
 
     /** @var string Link chuyển hướng sau khi share link */
-    private $redirectUrl;
+    protected $redirectUrl;
 
     /** @var string Link dùng để nhúng share trên facebook */
-    private $link;
+    protected $link;
 
     /** @var null|object Object chứa thông tin graph content */
-    private $graphShare;
+    protected $graphShare;
 
     /**
      * Facebook constructor.
