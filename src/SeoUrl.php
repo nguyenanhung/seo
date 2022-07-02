@@ -363,6 +363,21 @@ class SeoUrl implements Environment
     }
 
     /**
+     * Function searchSlugify
+     *
+     * @param string $str
+     *
+     * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 02/07/2022 41:45
+     */
+    public function searchSlugify(string $str = ''): string
+    {
+        return $this->search_slugify($str);
+    }
+
+    /**
      * Function strToEn - Str To English
      *
      * @author: 713uk13m <dev@nguyenanhung.com>
