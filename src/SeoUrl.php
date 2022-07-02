@@ -174,7 +174,7 @@ class SeoUrl implements Environment
     public function siteUrl($uri = '', $protocol = '')
     {
         if (function_exists('site_url') && function_exists('config_item')) {
-            return site_url($uri);
+            return site_url($uri, $protocol);
         }
         $protocol = strtolower($protocol);
         $url      = $this->homeUrl() . trim($uri) . $this->getSiteExt();
