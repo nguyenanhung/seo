@@ -170,38 +170,17 @@ class SeoUrl implements Environment
      */
     public function siteUrl($uri = '', $protocol = '')
     {
-        if (!isset($uri)) {
-            $base_url = null;
-        } elseif (trim($uri) === '') {
-            $base_url = '';
-        } else {
-            $base_url = rtrim($uri, '/') . '/';
-        }
-        if (isset($protocol)) {
-            // For protocol-relative links
-            if ($protocol === '') {
-                $base_url = substr($base_url, strpos($base_url, '//'));
-            } else {
-                $base_url = $protocol . substr($base_url, strpos($base_url, '://'));
-            }
-        }
+        $uri = trim($uri);
         if (empty($uri)) {
-            return $base_url;
+            return $this->homeUrl();
         }
-        if (is_array($uri)) {
-            $uri = http_build_query($uri);
-        }
-        $suffix = $this->getSiteExt();
-        if ($suffix !== '') {
-            if (($offset = strpos($uri, '?')) !== false) {
-                $uri = substr($uri, 0, $offset) . $suffix . substr($uri, $offset);
-            } else {
-                $uri .= $suffix;
-            }
+        $protocol = strtolower($protocol);
+        $url      = $this->homeUrl() . trim($uri) . $this->getSiteExt();
+        if ($protocol === 'https') {
+            $url = str_replace('http://', 'https://', $url);
         }
 
-        return trim($base_url) . trim($uri);
-
+        return $url;
     }
 
     /**
