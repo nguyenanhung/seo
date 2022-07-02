@@ -160,15 +160,15 @@ class SeoUrl implements Environment
     /**
      * Function siteUrl
      *
-     * @param string $uri
-     * @param string $protocol
+     * @param string|mixed $uri
+     * @param string|mixed $protocol
      *
      * @return false|string|null
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 16/06/2022 13:54
      */
-    public function siteUrl(string $uri = '', string $protocol = '')
+    public function siteUrl($uri = '', $protocol = '')
     {
         if (!isset($uri)) {
             $base_url = null;
@@ -177,30 +177,13 @@ class SeoUrl implements Environment
         } else {
             $base_url = rtrim($uri, '/') . '/';
         }
-        if (isset($protocol)) {
-            // For protocol-relative links
-            if ($protocol === '') {
-                $base_url = substr($base_url, strpos($base_url, '//'));
-            } else {
-                $base_url = $protocol . substr($base_url, strpos($base_url, '://'));
-            }
-        }
-        if (empty($uri)) {
-            return $base_url;
-        }
-        if (is_array($uri)) {
-            $uri = http_build_query($uri);
-        }
-        $suffix = $this->getSiteExt();
-        if ($suffix !== '') {
-            if (($offset = strpos($uri, '?')) !== false) {
-                $uri = substr($uri, 0, $offset) . $suffix . substr($uri, $offset);
-            } else {
-                $uri .= $suffix;
-            }
+        $protocol = strtolower($protocol);
+        $url      = $this->homeUrl() . trim($uri) . $this->getSiteExt();
+        if ($protocol === 'https') {
+            $url = str_replace('http://', 'https://', $url);
         }
 
-        return trim($base_url) . trim($uri);
+        return $url;
 
     }
 
