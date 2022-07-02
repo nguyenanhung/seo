@@ -149,6 +149,9 @@ class SeoUrl implements Environment
      */
     public function baseUrl(string $uri = ''): string
     {
+        if (function_exists('base_url') && function_exists('config_item')) {
+            return base_url($uri);
+        }
         $uri = trim($uri);
         if (empty($uri)) {
             return $this->homeUrl();
@@ -160,22 +163,18 @@ class SeoUrl implements Environment
     /**
      * Function siteUrl
      *
-     * @param string|mixed $uri
-     * @param string|mixed $protocol
+     * @param $uri
+     * @param $protocol
      *
-     * @return false|string|null
+     * @return array|string|string[]
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 16/06/2022 13:54
+     * @time     : 02/07/2022 34:06
      */
     public function siteUrl($uri = '', $protocol = '')
     {
-        if (!isset($uri)) {
-            $base_url = null;
-        } elseif (trim($uri) === '') {
-            $base_url = '';
-        } else {
-            $base_url = rtrim($uri, '/') . '/';
+        if (function_exists('site_url') && function_exists('config_item')) {
+            return site_url($uri);
         }
         $protocol = strtolower($protocol);
         $url      = $this->homeUrl() . trim($uri) . $this->getSiteExt();
