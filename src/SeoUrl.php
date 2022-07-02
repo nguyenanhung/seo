@@ -149,6 +149,9 @@ class SeoUrl implements Environment
      */
     public function baseUrl(string $uri = ''): string
     {
+        if (function_exists('base_url') && function_exists('config_item')) {
+            return base_url($uri);
+        }
         $uri = trim($uri);
         if (empty($uri)) {
             return $this->homeUrl();
@@ -160,47 +163,26 @@ class SeoUrl implements Environment
     /**
      * Function siteUrl
      *
-     * @param string $uri
-     * @param string $protocol
+     * @param $uri
+     * @param $protocol
      *
-     * @return false|string|null
+     * @return array|string|string[]
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 16/06/2022 13:54
+     * @time     : 02/07/2022 34:06
      */
-    public function siteUrl(string $uri = '', string $protocol = '')
+    public function siteUrl($uri = '', $protocol = '')
     {
-        if (!isset($uri)) {
-            $base_url = null;
-        } elseif (trim($uri) === '') {
-            $base_url = '';
-        } else {
-            $base_url = rtrim($uri, '/') . '/';
+        if (function_exists('site_url') && function_exists('config_item')) {
+            return site_url($uri);
         }
-        if (isset($protocol)) {
-            // For protocol-relative links
-            if ($protocol === '') {
-                $base_url = substr($base_url, strpos($base_url, '//'));
-            } else {
-                $base_url = $protocol . substr($base_url, strpos($base_url, '://'));
-            }
-        }
-        if (empty($uri)) {
-            return $base_url;
-        }
-        if (is_array($uri)) {
-            $uri = http_build_query($uri);
-        }
-        $suffix = $this->getSiteExt();
-        if ($suffix !== '') {
-            if (($offset = strpos($uri, '?')) !== false) {
-                $uri = substr($uri, 0, $offset) . $suffix . substr($uri, $offset);
-            } else {
-                $uri .= $suffix;
-            }
+        $protocol = strtolower($protocol);
+        $url      = $this->homeUrl() . trim($uri) . $this->getSiteExt();
+        if ($protocol === 'https') {
+            $url = str_replace('http://', 'https://', $url);
         }
 
-        return trim($base_url) . trim($uri);
+        return $url;
 
     }
 
