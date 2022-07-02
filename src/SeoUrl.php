@@ -293,6 +293,8 @@ class SeoUrl implements Environment
                     if (trim(mb_substr($imageUrl, 0, 12)) == 'crawler-news') {
                         $imageUrl = trim('uploads/' . $imageUrl);
                     }
+                    $imageUrl = str_replace('upload-vcms/news/news/', 'upload-vcms/news/', $imageUrl);
+                    $imageUrl = str_replace('upload-vcms/mheath/mheath/', 'upload-vcms/mheath/', $imageUrl);
 
                     return $staticUrl . $imageUrl;
                 }
