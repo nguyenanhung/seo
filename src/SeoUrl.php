@@ -174,7 +174,7 @@ class SeoUrl implements Environment
     public function siteUrl($uri = '', $protocol = '')
     {
         if (function_exists('site_url') && function_exists('config_item')) {
-            return site_url($uri);
+            return site_url($uri, $protocol);
         }
         $protocol = strtolower($protocol);
         $url      = $this->homeUrl() . trim($uri) . $this->getSiteExt();
@@ -360,6 +360,21 @@ class SeoUrl implements Environment
     public function search_slugify(string $str = ''): string
     {
         return (new SlugUrl())->searchSlugify($str);
+    }
+
+    /**
+     * Function searchSlugify
+     *
+     * @param string $str
+     *
+     * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 02/07/2022 41:45
+     */
+    public function searchSlugify(string $str = ''): string
+    {
+        return $this->search_slugify($str);
     }
 
     /**

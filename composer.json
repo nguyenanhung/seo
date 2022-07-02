@@ -30,6 +30,7 @@
         "paragonie/random_compat": ">=2.0"
     },
     "require-dev": {
+        "nguyenanhung/nanoid-helper": "^2.0 || ^1.0",
         "kint-php/kint": ">=3.0"
     },
     "autoload": {
@@ -43,6 +44,6 @@
     "suggest": {
         "ext-curl": "Need support CURL",
         "ext-json": "Need support JSON",
-        "hidehalo/nanoid-php": "Need support for helper function randomNanoId()"
+        "nguyenanhung/nanoid-helper": "Need support for helper function randomNanoId()"
     }
 }
