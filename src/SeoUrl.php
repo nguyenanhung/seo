@@ -469,10 +469,8 @@ class SeoUrl implements Environment
      */
     public function randomNanoId($size = 21)
     {
-        if (class_exists('Hidehalo\Nanoid\Client')) {
-            $client = new \Hidehalo\Nanoid\Client();
-
-            return $client->generateId($size);
+        if (function_exists('randomNanoId')) {
+            return randomNanoId($size);
         }
 
         return uniqid('HungNG_', true);
