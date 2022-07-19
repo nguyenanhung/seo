@@ -32,7 +32,6 @@
         "ext-mbstring": "*"
     },
     "require-dev": {
-        "nguyenanhung/nanoid-helper": "^2.0 || ^1.0",
         "kint-php/kint": ">=3.0"
     },
     "autoload": {
