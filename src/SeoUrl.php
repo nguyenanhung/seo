@@ -62,6 +62,9 @@ class SeoUrl implements Environment
     public function setSdkConfig(array $sdkConfig = array()): SeoUrl
     {
         $this->sdkConfig = $sdkConfig;
+        if (isset($this->sdkConfig[self::HASH_IDS_CONFIG_KEY])) {
+            $this->hashids = $this->sdkConfig[self::HASH_IDS_CONFIG_KEY];
+        }
 
         return $this;
     }
@@ -421,8 +424,15 @@ class SeoUrl implements Environment
      */
     public function encodeId($id): string
     {
-        $hash   = new Hashids();
-        $config = !is_array($this->hashids) ? array() : $this->hashids;
+        $hash = new Hashids();
+        if (isset($this->sdkConfig[self::HASH_IDS_CONFIG_KEY])) {
+            $this->hashids = $this->sdkConfig[self::HASH_IDS_CONFIG_KEY];
+        }
+        if (!is_array($this->hashids)) {
+            $config = array();
+        } else {
+            $config = $this->hashids;
+        }
         $hash->setConfig($config);
 
         return $hash->encodeId($id);
@@ -440,8 +450,15 @@ class SeoUrl implements Environment
      */
     public function decodeId($string)
     {
-        $hash   = new Hashids();
-        $config = !is_array($this->hashids) ? array() : $this->hashids;
+        $hash = new Hashids();
+        if (isset($this->sdkConfig[self::HASH_IDS_CONFIG_KEY])) {
+            $this->hashids = $this->sdkConfig[self::HASH_IDS_CONFIG_KEY];
+        }
+        if (!is_array($this->hashids)) {
+            $config = array();
+        } else {
+            $config = $this->hashids;
+        }
         $hash->setConfig($config);
 
         return $hash->decodeId($string);
@@ -472,11 +489,8 @@ class SeoUrl implements Environment
      */
     public function randomNanoId(int $size = 21): string
     {
-        if (class_exists('Hidehalo\Nanoid\Client')) {
-            /** @var object $client */
-            $client = new Hidehalo\Nanoid\Client();
-
-            return $client->generateId($size);
+        if (function_exists('randomNanoId')) {
+            return randomNanoId($size);
         }
 
         return uniqid('HungNG_', true);
