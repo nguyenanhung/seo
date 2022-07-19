@@ -27,10 +27,11 @@
         "ext-json": "*",
         "nguyenanhung/hashids-helper": "^2.0",
         "nguyenanhung/slug-helper": "^2.0",
-        "paragonie/random_compat": ">=2.0"
+        "nguyenanhung/nanoid-helper": "^2.0",
+        "paragonie/random_compat": ">=2.0",
+        "ext-mbstring": "*"
     },
     "require-dev": {
-        "nguyenanhung/nanoid-helper": "^2.0 || ^1.0",
         "kint-php/kint": ">=3.0"
     },
     "autoload": {
