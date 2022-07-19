@@ -24,7 +24,8 @@ class SeoUrl implements Environment
 {
     use Version;
 
-    const HANDLE_CONFIG_KEY   = 'CONFIG_HANDLE';
+    const HANDLE_CONFIG_KEY = 'CONFIG_HANDLE';
+
     const HASH_IDS_CONFIG_KEY = 'hashIdsConfig';
 
     /** @var array SDK Config */
@@ -62,6 +63,9 @@ class SeoUrl implements Environment
     public function setSdkConfig($sdkConfig = array())
     {
         $this->sdkConfig = $sdkConfig;
+        if (isset($this->sdkConfig[self::HASH_IDS_CONFIG_KEY])) {
+            $this->hashids = $this->sdkConfig[self::HASH_IDS_CONFIG_KEY];
+        }
 
         return $this;
     }
@@ -318,7 +322,7 @@ class SeoUrl implements Environment
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/15/2021 33:15
      */
-    public function setHashIds($hashIdsConfig = [])
+    public function setHashIds($hashIdsConfig = array())
     {
         $this->hashids = $hashIdsConfig;
 
@@ -411,6 +415,9 @@ class SeoUrl implements Environment
     public function encodeId($id)
     {
         $hash = new Hashids();
+        if (isset($this->sdkConfig[self::HASH_IDS_CONFIG_KEY])) {
+            $this->hashids = $this->sdkConfig[self::HASH_IDS_CONFIG_KEY];
+        }
         $hash->setConfig($this->hashids);
 
         return $hash->encodeId($id);
@@ -429,6 +436,9 @@ class SeoUrl implements Environment
     public function decodeId($string)
     {
         $hash = new Hashids();
+        if (isset($this->sdkConfig[self::HASH_IDS_CONFIG_KEY])) {
+            $this->hashids = $this->sdkConfig[self::HASH_IDS_CONFIG_KEY];
+        }
         $hash->setConfig($this->hashids);
 
         return $hash->decodeId($string);
@@ -460,8 +470,7 @@ class SeoUrl implements Environment
     public function randomNanoId($size = 21)
     {
         if (class_exists('Hidehalo\Nanoid\Client')) {
-            /** @var object $client */
-            $client = new Hidehalo\Nanoid\Client();
+            $client = new \Hidehalo\Nanoid\Client();
 
             return $client->generateId($size);
         }

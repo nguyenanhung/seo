@@ -27,6 +27,7 @@
         "ext-json": "*",
         "nguyenanhung/slug-helper": "^1.0",
         "nguyenanhung/hashids-helper": "^1.0",
+        "nguyenanhung/nanoid-helper": "^1.0",
         "ext-mbstring": "*"
     },
     "require-dev": {
