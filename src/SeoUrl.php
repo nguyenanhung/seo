@@ -62,9 +62,6 @@ class SeoUrl implements Environment
     public function setSdkConfig(array $sdkConfig = array()): SeoUrl
     {
         $this->sdkConfig = $sdkConfig;
-        if (isset($this->sdkConfig[self::HASH_IDS_CONFIG_KEY])) {
-            $this->hashids = $this->sdkConfig[self::HASH_IDS_CONFIG_KEY];
-        }
 
         return $this;
     }
@@ -425,9 +422,6 @@ class SeoUrl implements Environment
     public function encodeId($id): string
     {
         $hash = new Hashids();
-        if (isset($this->sdkConfig[self::HASH_IDS_CONFIG_KEY])) {
-            $this->hashids = $this->sdkConfig[self::HASH_IDS_CONFIG_KEY];
-        }
         if (!is_array($this->hashids)) {
             $config = array();
         } else {
@@ -451,9 +445,6 @@ class SeoUrl implements Environment
     public function decodeId($string)
     {
         $hash = new Hashids();
-        if (isset($this->sdkConfig[self::HASH_IDS_CONFIG_KEY])) {
-            $this->hashids = $this->sdkConfig[self::HASH_IDS_CONFIG_KEY];
-        }
         if (!is_array($this->hashids)) {
             $config = array();
         } else {
