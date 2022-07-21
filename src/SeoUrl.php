@@ -63,6 +63,7 @@ class SeoUrl implements Environment
     public function setSdkConfig($sdkConfig = array())
     {
         $this->sdkConfig = $sdkConfig;
+
         return $this;
     }
 
@@ -140,18 +141,19 @@ class SeoUrl implements Environment
     /**
      * Function baseUrl
      *
-     * @param string $uri
+     * @param string       $uri
+     * @param string|mixed $protocol
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 07/25/2020 00:48
      */
-    public function baseUrl($uri = '')
+    public function baseUrl($uri = '', $protocol = null)
     {
-        if (function_exists('base_url') && function_exists('config_item')) {
+        if (function_exists('base_url')) {
             // Framework CodeIgniter
-            return base_url($uri);
+            return base_url($uri, $protocol);
         }
         $uri = trim($uri);
         if (empty($uri)) {
@@ -174,7 +176,7 @@ class SeoUrl implements Environment
      */
     public function siteUrl($uri = '', $protocol = '')
     {
-        if (function_exists('site_url') && function_exists('config_item')) {
+        if (function_exists('site_url')) {
             // Framework CodeIgniter
             return site_url($uri, $protocol);
         }
@@ -412,6 +414,7 @@ class SeoUrl implements Environment
     {
         $hash = new Hashids();
         $hash->setConfig($this->hashids);
+
         return $hash->encodeId($id);
     }
 
@@ -763,6 +766,9 @@ class SeoUrl implements Environment
      */
     public function homeUrl()
     {
+        if (function_exists('site_url')) {
+            return site_url();
+        }
         if (isset($this->sdkConfig[self::HANDLE_CONFIG_KEY]['homepage'])) {
             return $this->sdkConfig[self::HANDLE_CONFIG_KEY]['homepage'];
         }
