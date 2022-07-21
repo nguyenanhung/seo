@@ -140,15 +140,15 @@ class SeoUrl implements Environment
     /**
      * Function baseUrl
      *
-     * @param string      $uri
-     * @param string|null $protocol
+     * @param $uri
+     * @param $protocol
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 07/25/2020 00:48
      */
-    public function baseUrl(string $uri = '', string $protocol = null): string
+    public function baseUrl($uri = '', $protocol = null): string
     {
         if (function_exists('base_url')) {
             return base_url($uri, $protocol);
