@@ -187,7 +187,7 @@ class Facebook implements Environment
         if (!empty($request)) {
             $this->graphShare = json_decode(trim($request));
         } else {
-            $this->graphShare = NULL;
+            $this->graphShare = null;
         }
 
         return $this;

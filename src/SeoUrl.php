@@ -230,12 +230,10 @@ class SeoUrl implements Environment
             } else {
                 $uri = ($themes . '/assets/' . $uri);
             }
+        } elseif ($assetFolder === 'no') {
+            $uri = trim($uri);
         } else {
-            if ($assetFolder === 'no') {
-                $uri = trim($uri);
-            } else {
-                $uri = ('assets/' . $uri);
-            }
+            $uri = ('assets/' . $uri);
         }
 
         return $this->baseUrl($assetsPath . $uri);
