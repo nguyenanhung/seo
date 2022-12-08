@@ -230,18 +230,16 @@ class SeoUrl implements Environment
         $assetFolder = strtolower($assetFolder);
         $assetsPath  = 'assets/themes/';
         // Pattern
-        if ($themes != '') {
-            if ($assetFolder == 'no') {
+        if ($themes !== '') {
+            if ($assetFolder === 'no') {
                 $uri = ($themes . '/' . $uri);
             } else {
                 $uri = ($themes . '/assets/' . $uri);
             }
+        } elseif ($assetFolder === 'no') {
+            $uri = trim($uri);
         } else {
-            if ($assetFolder == 'no') {
-                $uri = trim($uri);
-            } else {
-                $uri = ('assets/' . $uri);
-            }
+            $uri = ('assets/' . $uri);
         }
 
         return $this->baseUrl($assetsPath . $uri);
@@ -274,8 +272,8 @@ class SeoUrl implements Environment
      */
     public function imageUrl($input = '')
     {
-        $config    = [
-            'no_thumb' => [
+        $config    = array(
+            'no_thumb' => array(
                 'images/system/no_avatar.jpg',
                 'images/system/no_avatar_100x100.jpg',
                 'images/system/no_video_available.jpg',
@@ -283,8 +281,8 @@ class SeoUrl implements Environment
                 'images/system/no-image-available.jpg',
                 'images/system/no-image-available_60.jpg',
                 'images/system/no-image-available_330.jpg'
-            ]
-        ];
+            )
+        );
         $assetsUrl = $this->sdkConfig[self::HANDLE_CONFIG_KEY]['assets_url'];
         $staticUrl = $this->sdkConfig[self::HANDLE_CONFIG_KEY]['static_url'];
         $imageUrl  = trim($input);
@@ -292,19 +290,19 @@ class SeoUrl implements Environment
             $noThumbnail = $config['no_thumb'];
             if (in_array($imageUrl, $noThumbnail)) {
                 return $assetsUrl . trim($imageUrl);
-            } else {
-                $parse_input = parse_url($imageUrl);
-                if (isset($parse_input['host'])) {
-                    return $imageUrl;
-                } else {
-                    if (trim(mb_substr($imageUrl, 0, 12)) == 'crawler-news') {
-                        $imageUrl = trim('uploads/' . $imageUrl);
-                    }
-                    $imageUrl = str_replace('upload-vcms/news/news/', 'upload-vcms/news/', $imageUrl);
-
-                    return $staticUrl . $imageUrl;
-                }
             }
+
+            $parse_input = parse_url($imageUrl);
+            if (isset($parse_input['host'])) {
+                return $imageUrl;
+            }
+
+            if (trim(mb_substr($imageUrl, 0, 12)) === 'crawler-news') {
+                $imageUrl = trim('uploads/' . $imageUrl);
+            }
+            $imageUrl = str_replace('upload-vcms/news/news/', 'upload-vcms/news/', $imageUrl);
+
+            return $staticUrl . $imageUrl;
         }
 
         return $imageUrl;
