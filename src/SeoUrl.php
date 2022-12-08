@@ -224,14 +224,14 @@ class SeoUrl implements Environment
         $assetFolder = strtolower($assetFolder);
         $assetsPath  = 'assets/themes/';
         // Pattern
-        if ($themes != '') {
-            if ($assetFolder == 'no') {
+        if ($themes !== '') {
+            if ($assetFolder === 'no') {
                 $uri = ($themes . '/' . $uri);
             } else {
                 $uri = ($themes . '/assets/' . $uri);
             }
         } else {
-            if ($assetFolder == 'no') {
+            if ($assetFolder === 'no') {
                 $uri = trim($uri);
             } else {
                 $uri = ('assets/' . $uri);
@@ -286,20 +286,23 @@ class SeoUrl implements Environment
             $noThumbnail = $config['no_thumb'];
             if (in_array($imageUrl, $noThumbnail)) {
                 return $assetsUrl . trim($imageUrl);
-            } else {
-                $parse_input = parse_url($imageUrl);
-                if (isset($parse_input['host'])) {
-                    return $imageUrl;
-                } else {
-                    if (trim(mb_substr($imageUrl, 0, 12)) == 'crawler-news') {
-                        $imageUrl = trim('uploads/' . $imageUrl);
-                    }
-                    $imageUrl = str_replace('upload-vcms/news/news/', 'upload-vcms/news/', $imageUrl);
-                    $imageUrl = str_replace('upload-vcms/mheath/mheath/', 'upload-vcms/mheath/', $imageUrl);
-
-                    return $staticUrl . $imageUrl;
-                }
             }
+
+            $parse_input = parse_url($imageUrl);
+            if (isset($parse_input['host'])) {
+                return $imageUrl;
+            }
+
+            if (trim(mb_substr($imageUrl, 0, 12)) === 'crawler-news') {
+                $imageUrl = trim('uploads/' . $imageUrl);
+            }
+            $imageUrl = str_replace(
+                array('upload-vcms/news/news/', 'upload-vcms/mheath/mheath/'),
+                array('upload-vcms/news/', 'upload-vcms/mheath/'),
+                $imageUrl
+            );
+
+            return $staticUrl . $imageUrl;
         }
 
         return $imageUrl;

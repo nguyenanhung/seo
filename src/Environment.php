@@ -17,8 +17,8 @@ namespace nguyenanhung\SEO;
  */
 interface Environment
 {
-    const VERSION       = '3.0.7.2';
-    const LAST_MODIFIED = '2022-07-22';
+    const VERSION       = '3.0.7.3';
+    const LAST_MODIFIED = '2022-12-07';
     const AUTHOR_NAME   = 'Hung Nguyen';
     const AUTHOR_EMAIL  = 'dev@nguyenanhung.com';
     const AUTHOR_URL    = 'https://nguyenanhung.com';
