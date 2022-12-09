@@ -40,14 +40,7 @@ class MetaTagForPageLists extends MetaTag
             'seo_robots',
             'seo_revisit-after',
             'seo_geo_tagging',
-            'social_profile_json',
-            'content_created_at',
-            'content_updated_at',
-            'content_release_time',
-            'content_author',
-            'content_name',
-            'content_description',
-            'content_slugs',
+            'social_profile_json'
         );
 
     public function buildMetaContent()
