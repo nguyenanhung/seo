@@ -13,13 +13,13 @@ namespace nguyenanhung\SEO\MetaTag;
 use nguyenanhung\SEO\Utils;
 
 /**
- * Class MetaTagForHome
+ * Class MetaTagForDefaultPage
  *
  * @package   nguyenanhung\SEO\MetaTag
  * @author    713uk13m <dev@nguyenanhung.com>
  * @copyright 713uk13m <dev@nguyenanhung.com>
  */
-class MetaTagForHome extends MetaTag
+class MetaTagForDefaultPage extends MetaTag
 {
     protected $exampleData
         = array(
