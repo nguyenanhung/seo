@@ -197,4 +197,16 @@ class MetaTagForHome extends MetaTag
             ]
         ];
     }
+
+    public function buildGoogleSearchSchema()
+    {
+        return [
+            "@context"      => "https://schema.org",
+            "@type"         => "WebSite",
+            "name"          => $this->getDataItem('site_name'),
+            "alternateName" => $this->getDataItem('site_slogan'),
+            "dateModified"  => "",
+            "url"           => $this->getDataItem('homepageUrl')
+        ];
+    }
 }
