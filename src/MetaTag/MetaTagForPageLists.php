@@ -204,10 +204,10 @@ class MetaTagForPageLists extends MetaTag
         return [
             "@context"      => "https://schema.org",
             "@type"         => "WebSite",
-            "name"          => $this->getDataItem('site_name'),
+            "name"          => $this->getDataItem('site_title'),
             "alternateName" => $this->getDataItem('site_slogan'),
-            "dateModified"  => "",
-            "url"           => $this->getDataItem('homepageUrl')
+            "dateModified"  => date('Y-m-d H:i'),
+            "url"           => $this->getDataItem('canonical_url')
         ];
     }
 }
