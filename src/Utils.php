@@ -21,6 +21,45 @@ use Exception;
 class Utils
 {
     /**
+     * Function jsonItem
+     *
+     * @author: 713uk13m <dev@nguyenanhung.com>
+     * @time  : 2018-12-07 11:51
+     *
+     * @param string $json
+     * @param string $output
+     *
+     * @return string|null
+     */
+    public static function jsonItem($json = '', $output = '')
+    {
+        $result = json_decode(trim($json));
+        $output = trim($output);
+        if ($result !== null) {
+            if (isset($result->$output)) {
+                return trim($result->$output);
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Function slugify
+     *
+     * @param $str
+     *
+     * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 09/12/2022 51:05
+     */
+    public static function slugify($str = '')
+    {
+        return (new SeoUrl())->slugify($str);
+    }
+
+    /**
      * Function sendRequest
      *
      * @param string                   $url
@@ -35,9 +74,9 @@ class Utils
     public static function sendRequest(string $url = '', $params = null, string $method = 'GET')
     {
         try {
-            $method   = strtoupper($method);
+            $method = strtoupper($method);
             $endpoint = ((is_array($params) || is_object($params)) && !empty($params)) ? $url . '?' . http_build_query($params) : $url;
-            $curl     = curl_init();
+            $curl = curl_init();
             curl_setopt_array($curl, array(
                 CURLOPT_URL            => $endpoint,
                 CURLOPT_RETURNTRANSFER => true,
@@ -50,7 +89,7 @@ class Utils
                 CURLOPT_HTTPHEADER     => array(),
             ));
             $response = curl_exec($curl);
-            $err      = curl_error($curl);
+            $err = curl_error($curl);
             curl_close($curl);
             if ($err) {
                 $message = "cURL Error #:" . $err;

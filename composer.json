@@ -28,6 +28,7 @@
         "nguyenanhung/hashids-helper": "^2.0",
         "nguyenanhung/slug-helper": "^2.0",
         "nguyenanhung/nanoid-helper": "^2.0",
+        "nguyenanhung/escape-helper": "^2.0",
         "paragonie/random_compat": ">=2.0",
         "ext-mbstring": "*"
     },
@@ -39,7 +40,8 @@
             "nguyenanhung\\SEO\\": "src/"
         },
         "files": [
-            "helpers/common.php"
+            "helpers/common.php",
+            "helpers/meta_tag.php"
         ]
     },
     "suggest": {
