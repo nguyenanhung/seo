@@ -165,7 +165,7 @@ class MetaTagForDefaultPage extends MetaTag
             ],
             [
                 'property' => 'og:image:url',
-                'content'  =>  trim($this->getDataItem('site_images'))
+                'content'  => trim($this->getDataItem('site_images'))
             ],
             [
                 'property' => 'og:image:alt',
@@ -192,7 +192,7 @@ class MetaTagForDefaultPage extends MetaTag
             ],
             [
                 'property' => 'image',
-                'content'  =>  trim($this->getDataItem('site_images')),
+                'content'  => trim($this->getDataItem('site_images')),
                 'type'     => 'itemprop'
             ]
         ];
@@ -205,7 +205,7 @@ class MetaTagForDefaultPage extends MetaTag
             "@type"         => "WebSite",
             "name"          => $this->getDataItem('site_name'),
             "alternateName" => $this->getDataItem('site_slogan'),
-            "dateModified"  => "",
+            "dateModified"  => date('Y-m-d H:i'),
             "url"           => $this->getDataItem('homepageUrl')
         ];
     }

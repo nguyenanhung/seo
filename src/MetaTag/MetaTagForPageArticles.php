@@ -50,6 +50,8 @@ class MetaTagForPageArticles extends MetaTag
             'content_name',
             'content_description',
             'content_slugs',
+            'category_name',
+            'category_slugs',
         );
 
     public function buildMetaContent()
@@ -304,13 +306,62 @@ class MetaTagForPageArticles extends MetaTag
 
     public function buildGoogleSearchSchema()
     {
-        return [
-            "@context"      => "https://schema.org",
-            "@type"         => "WebSite",
-            "name"          => $this->getDataItem('site_name'),
-            "alternateName" => $this->getDataItem('site_slogan'),
-            "dateModified"  => "",
-            "url"           => $this->getDataItem('homepageUrl')
-        ];
+        return array(
+            "@context"         => "https://schema.org",
+            "@type"            => "NewsArticle",
+            "mainEntityOfPage" => array(
+                "@type" => "WebPage",
+                "@id"   => $this->getDataItem('canonical_url')
+            ),
+            "headline"         => $this->getDataItem('site_title'),
+            "description"      => $this->getDataItem('site_description'),
+            "image"            => array(
+                "@type"  => "ImageObject",
+                "url"    => $this->getDataItem('site_images'),
+                "width"  => 640,
+                "height" => 333
+            ),
+            "datePublished"    => date('Y-m-d H:i', strtotime($this->getDataItem('content_release_time'))),
+            "dateModified"     => date('Y-m-d H:i', strtotime($this->getDataItem('content_updated_at'))),
+            "author"           => array(
+                "@type" => "Person",
+                "name"  => $this->getDataItem('site_name')
+            ),
+            "publisher"        => array(
+                "@type" => "Organization",
+                "name"  => $this->getDataItem('site_name'),
+                "logo"  => array(
+                    "@type" => "ImageObject",
+                    "url"   => $this->getDataItem('site_images'),
+                    "width" => 640
+                )
+            )
+        );
+    }
+
+    public function buildBreadcrumbListSchema()
+    {
+        return '{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "' . trim($this->getDataItem('homepageUrl')) . '",
+        "name": "Trang chủ"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "' . trim($this->getDataItem('category_slugs')) . '",
+        "name": "' . trim($this->getDataItem('category_name')) . '"
+      }
+    }
+  ]
+}';
     }
 }

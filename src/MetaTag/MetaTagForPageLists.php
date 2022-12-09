@@ -40,14 +40,7 @@ class MetaTagForPageLists extends MetaTag
             'seo_robots',
             'seo_revisit-after',
             'seo_geo_tagging',
-            'social_profile_json',
-            'content_created_at',
-            'content_updated_at',
-            'content_release_time',
-            'content_author',
-            'content_name',
-            'content_description',
-            'content_slugs',
+            'social_profile_json'
         );
 
     public function buildMetaContent()
@@ -211,10 +204,10 @@ class MetaTagForPageLists extends MetaTag
         return [
             "@context"      => "https://schema.org",
             "@type"         => "WebSite",
-            "name"          => $this->getDataItem('site_name'),
+            "name"          => $this->getDataItem('site_title'),
             "alternateName" => $this->getDataItem('site_slogan'),
-            "dateModified"  => "",
-            "url"           => $this->getDataItem('homepageUrl')
+            "dateModified"  => date('Y-m-d H:i'),
+            "url"           => $this->getDataItem('canonical_url')
         ];
     }
 }

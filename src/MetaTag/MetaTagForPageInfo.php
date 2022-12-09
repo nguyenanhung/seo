@@ -307,7 +307,7 @@ class MetaTagForPageInfo extends MetaTag
             "@type"         => "WebSite",
             "name"          => $this->getDataItem('site_name'),
             "alternateName" => $this->getDataItem('site_slogan'),
-            "dateModified"  => "",
+            "dateModified"  => date('Y-m-d H:i'),
             "url"           => $this->getDataItem('homepageUrl')
         ];
     }
