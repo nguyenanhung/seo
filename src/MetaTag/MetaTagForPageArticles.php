@@ -48,6 +48,7 @@ class MetaTagForPageArticles extends MetaTag
             'content_release_time',
             'content_author',
             'content_name',
+            'content_description',
             'content_slugs',
         );
 
