@@ -48,7 +48,7 @@ class MetaTag
             return null;
         }
         if (is_array($this->data) && isset($this->data[$item])) {
-            return $this->data[$item];
+            return escapeHtml($this->data[$item]);
         }
 
         return null;

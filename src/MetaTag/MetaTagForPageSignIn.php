@@ -13,13 +13,13 @@ namespace nguyenanhung\SEO\MetaTag;
 use nguyenanhung\SEO\Utils;
 
 /**
- * Class MetaTagForHome
+ * Class MetaTagForPageSignIn
  *
  * @package   nguyenanhung\SEO\MetaTag
  * @author    713uk13m <dev@nguyenanhung.com>
  * @copyright 713uk13m <dev@nguyenanhung.com>
  */
-class MetaTagForHome extends MetaTag
+class MetaTagForPageSignIn extends MetaTag
 {
     protected $exampleData
         = array(
@@ -54,18 +54,6 @@ class MetaTagForHome extends MetaTag
                 'content' => $this->getDataItem('seo_revisit-after')
             ],
             [
-                'name'    => 'description',
-                'content' => $this->getDataItem('site_description')
-            ],
-            [
-                'name'    => 'keywords',
-                'content' => $this->getDataItem('site_keywords')
-            ],
-            [
-                'name'    => 'news_keywords',
-                'content' => $this->getDataItem('site_keywords')
-            ],
-            [
                 'name'    => 'copyright',
                 'content' => $this->getDataItem('site_name')
             ],
@@ -75,15 +63,11 @@ class MetaTagForHome extends MetaTag
             ],
             [
                 'name'    => 'author',
-                'content' => $this->getDataItem('web_author')
+                'content' => $this->getDataItem('site_name')
             ],
             [
                 'name'    => 'web_author',
                 'content' => $this->getDataItem('web_author')
-            ],
-            [
-                'name'    => 'dc.created',
-                'content' => $this->getDataItem('dc.created')
             ],
             [
                 'name'    => 'dc.publisher',
@@ -149,50 +133,24 @@ class MetaTagForHome extends MetaTag
             ],
             [
                 'property' => 'og:title',
-                'content'  => $this->getDataItem('site_title')
-            ],
-            [
-                'property' => 'og:description',
-                'content'  => $this->getDataItem('site_description')
+                'content'  => 'Đăng nhập ' . $this->getDataItem('site_name')
             ],
             [
                 'property' => 'og:url',
-                'content'  => $this->getDataItem('homepageUrl')
-            ],
-            [
-                'property' => 'og:image',
-                'content'  => $this->getDataItem('assetsUrl') . trim($this->getDataItem('site_images'))
-            ],
-            [
-                'property' => 'og:image:url',
-                'content'  => $this->getDataItem('assetsUrl') . trim($this->getDataItem('site_images'))
-            ],
-            [
-                'property' => 'og:image:alt',
-                'content'  => Utils::slugify($this->getDataItem('site_name'))
+                'content'  => $this->getDataItem('canonical_url')
             ],
             [
                 'property' => 'og:site_name',
-                'content'  => $this->getDataItem('site_slogan')
+                'content'  => $this->getDataItem('site_name')
             ],
             [
                 'property' => 'title',
-                'content'  => $this->getDataItem('site_title'),
-                'type'     => 'itemprop'
-            ],
-            [
-                'property' => 'description',
-                'content'  => $this->getDataItem('site_slogan'),
+                'content'  => 'Đăng nhập ' . $this->getDataItem('site_name'),
                 'type'     => 'itemprop'
             ],
             [
                 'property' => 'url',
-                'content'  => $this->getDataItem('homepageUrl'),
-                'type'     => 'itemprop'
-            ],
-            [
-                'property' => 'image',
-                'content'  => $this->getDataItem('assetsUrl') . trim($this->getDataItem('site_images')),
+                'content'  => $this->getDataItem('canonical_url'),
                 'type'     => 'itemprop'
             ]
         ];
