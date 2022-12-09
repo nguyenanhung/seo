@@ -39,7 +39,8 @@
             "nguyenanhung\\SEO\\": "src/"
         },
         "files": [
-            "helpers/common.php"
+            "helpers/common.php",
+            "helpers/meta_tag.php"
         ]
     },
     "suggest": {
