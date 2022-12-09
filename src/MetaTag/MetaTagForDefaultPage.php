@@ -161,11 +161,11 @@ class MetaTagForDefaultPage extends MetaTag
             ],
             [
                 'property' => 'og:image',
-                'content'  => $this->getDataItem('assetsUrl') . trim($this->getDataItem('site_images'))
+                'content'  => trim($this->getDataItem('site_images'))
             ],
             [
                 'property' => 'og:image:url',
-                'content'  => $this->getDataItem('assetsUrl') . trim($this->getDataItem('site_images'))
+                'content'  =>  trim($this->getDataItem('site_images'))
             ],
             [
                 'property' => 'og:image:alt',
@@ -192,7 +192,7 @@ class MetaTagForDefaultPage extends MetaTag
             ],
             [
                 'property' => 'image',
-                'content'  => $this->getDataItem('assetsUrl') . trim($this->getDataItem('site_images')),
+                'content'  =>  trim($this->getDataItem('site_images')),
                 'type'     => 'itemprop'
             ]
         ];
