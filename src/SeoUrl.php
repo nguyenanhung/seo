@@ -24,7 +24,7 @@ class SeoUrl implements Environment
 {
     use Version;
 
-    const HANDLE_CONFIG_KEY   = 'CONFIG_HANDLE';
+    const HANDLE_CONFIG_KEY = 'CONFIG_HANDLE';
     const HASH_IDS_CONFIG_KEY = 'hashIdsConfig';
 
     /** @var array SDK Config */
@@ -178,7 +178,7 @@ class SeoUrl implements Environment
             return site_url($uri, $protocol);
         }
         $protocol = strtolower($protocol);
-        $url      = $this->homeUrl() . trim($uri) . $this->getSiteExt();
+        $url = $this->homeUrl() . trim($uri) . $this->getSiteExt();
         if ($protocol === 'https') {
             $url = str_replace('http://', 'https://', $url);
         }
@@ -222,7 +222,7 @@ class SeoUrl implements Environment
     public function assetsUrlThemes(string $themes = '', string $uri = '', string $assetFolder = 'yes'): string
     {
         $assetFolder = strtolower($assetFolder);
-        $assetsPath  = 'assets/themes/';
+        $assetsPath = 'assets/themes/';
         // Pattern
         if ($themes !== '') {
             if ($assetFolder === 'no') {
@@ -266,7 +266,7 @@ class SeoUrl implements Environment
      */
     public function imageUrl(string $input = ''): string
     {
-        $config    = [
+        $config = [
             'no_thumb' => [
                 'images/system/no_avatar.jpg',
                 'images/system/no_avatar_100x100.jpg',
@@ -279,7 +279,7 @@ class SeoUrl implements Environment
         ];
         $assetsUrl = $this->sdkConfig[self::HANDLE_CONFIG_KEY]['assets_url'];
         $staticUrl = $this->sdkConfig[self::HANDLE_CONFIG_KEY]['static_url'];
-        $imageUrl  = trim($input);
+        $imageUrl = trim($input);
         if (!empty($imageUrl)) {
             $noThumbnail = $config['no_thumb'];
             if (in_array($imageUrl, $noThumbnail)) {
@@ -294,11 +294,7 @@ class SeoUrl implements Environment
             if (trim(mb_substr($imageUrl, 0, 12)) === 'crawler-news') {
                 $imageUrl = trim('uploads/' . $imageUrl);
             }
-            $imageUrl = str_replace(
-                array('upload-vcms/news/news/', 'upload-vcms/mheath/mheath/'),
-                array('upload-vcms/news/', 'upload-vcms/mheath/'),
-                $imageUrl
-            );
+            $imageUrl = str_replace(array('upload-vcms/news/news/', 'upload-vcms/mheath/mheath/'), array('upload-vcms/news/', 'upload-vcms/mheath/'), $imageUrl);
 
             return $staticUrl . $imageUrl;
         }
@@ -517,16 +513,17 @@ class SeoUrl implements Environment
     /**
      * Function urlPost
      *
-     * @param string     $categorySlug
-     * @param string     $postSlug
-     * @param string|int $postId
+     * @param string          $categorySlug
+     * @param string          $postSlug
+     * @param string|int      $postId
+     * @param string|int|null $postType
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/15/2021 36:40
      */
-    public function urlPost(string $categorySlug = '', string $postSlug = '', $postId = ''): string
+    public function urlPost(string $categorySlug = '', string $postSlug = '', $postId = '', $postType = null): string
     {
         return $this->homeUrl() . trim($categorySlug) . '/' . trim($postSlug) . '-post' . $this->encodeId(trim($postId)) . $this->siteExt;
     }
@@ -534,18 +531,19 @@ class SeoUrl implements Environment
     /**
      * Function url_post
      *
-     * @param string     $categorySlug
-     * @param string     $postSlug
-     * @param string|int $postId
+     * @param string          $categorySlug
+     * @param string          $postSlug
+     * @param string|int      $postId
+     * @param string|int|null $postType
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/15/2021 36:59
      */
-    public function url_post(string $categorySlug = '', string $postSlug = '', $postId = ''): string
+    public function url_post(string $categorySlug = '', string $postSlug = '', $postId = '', $postType = null): string
     {
-        return $this->urlPost($categorySlug, $postSlug, $postId);
+        return $this->urlPost($categorySlug, $postSlug, $postId, $postType);
     }
 
     /**
@@ -609,7 +607,7 @@ class SeoUrl implements Environment
      */
     public function urlPageShare(string $pageId = ''): string
     {
-        $home   = $this->homeUrl();
+        $home = $this->homeUrl();
         $pageId = trim($pageId);
         if (empty($pageId)) {
             return $home;
