@@ -185,7 +185,7 @@ class SeoUrl implements Environment
             return $this->homeUrl();
         }
         $protocol = strtolower($protocol);
-        $url      = $this->homeUrl() . trim($uri) . $this->getSiteExt();
+        $url = $this->homeUrl() . trim($uri) . $this->getSiteExt();
         if ($protocol === 'https') {
             $url = str_replace('http://', 'https://', $url);
         }
@@ -228,7 +228,7 @@ class SeoUrl implements Environment
     public function assetsUrlThemes($themes = '', $uri = '', $assetFolder = 'yes')
     {
         $assetFolder = strtolower($assetFolder);
-        $assetsPath  = 'assets/themes/';
+        $assetsPath = 'assets/themes/';
         // Pattern
         if ($themes !== '') {
             if ($assetFolder === 'no') {
@@ -272,7 +272,7 @@ class SeoUrl implements Environment
      */
     public function imageUrl($input = '')
     {
-        $config    = array(
+        $config = array(
             'no_thumb' => array(
                 'images/system/no_avatar.jpg',
                 'images/system/no_avatar_100x100.jpg',
@@ -285,7 +285,7 @@ class SeoUrl implements Environment
         );
         $assetsUrl = $this->sdkConfig[self::HANDLE_CONFIG_KEY]['assets_url'];
         $staticUrl = $this->sdkConfig[self::HANDLE_CONFIG_KEY]['static_url'];
-        $imageUrl  = trim($input);
+        $imageUrl = trim($input);
         if (!empty($imageUrl)) {
             $noThumbnail = $config['no_thumb'];
             if (in_array($imageUrl, $noThumbnail)) {
@@ -493,16 +493,17 @@ class SeoUrl implements Environment
     /**
      * Function urlPost
      *
-     * @param string     $categorySlug
-     * @param string     $postSlug
-     * @param string|int $postId
+     * @param string          $categorySlug
+     * @param string          $postSlug
+     * @param string|int      $postId
+     * @param string|int|null $postType
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/15/2021 36:40
      */
-    public function urlPost($categorySlug = '', $postSlug = '', $postId = '')
+    public function urlPost($categorySlug = '', $postSlug = '', $postId = '', $postType = null)
     {
         return $this->homeUrl() . trim($categorySlug) . '/' . trim($postSlug) . '-post' . $this->encodeId(trim($postId)) . $this->siteExt;
     }
@@ -510,18 +511,19 @@ class SeoUrl implements Environment
     /**
      * Function url_post
      *
-     * @param string     $categorySlug
-     * @param string     $postSlug
-     * @param string|int $postId
+     * @param string          $categorySlug
+     * @param string          $postSlug
+     * @param string|int      $postId
+     * @param string|int|null $postType
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/15/2021 36:59
      */
-    public function url_post($categorySlug = '', $postSlug = '', $postId = '')
+    public function url_post($categorySlug = '', $postSlug = '', $postId = '', $postType = null)
     {
-        return $this->urlPost($categorySlug, $postSlug, $postId);
+        return $this->urlPost($categorySlug, $postSlug, $postId, $postType);
     }
 
     /**
@@ -585,7 +587,7 @@ class SeoUrl implements Environment
      */
     public function urlPageShare($pageId = '')
     {
-        $home   = $this->homeUrl();
+        $home = $this->homeUrl();
         $pageId = trim($pageId);
         if (empty($pageId)) {
             return $home;
