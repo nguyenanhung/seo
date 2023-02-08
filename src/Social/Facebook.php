@@ -20,7 +20,7 @@ use nguyenanhung\SEO\Version;
  * @author    713uk13m <dev@nguyenanhung.com>
  * @copyright 713uk13m <dev@nguyenanhung.com>
  */
-class Facebook implements Environment, FacebookInterface
+class Facebook implements Environment
 {
     use Version, SocialTrait;
 
@@ -55,12 +55,12 @@ class Facebook implements Environment, FacebookInterface
     /**
      * Function setAppId
      *
-     * @param string $appId
+     * @param $appId
      *
-     * @return $this|\nguyenanhung\SEO\Social\FacebookInterface
+     * @return $this
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 10/4/19 33:35
+     * @time     : 08/02/2023 11:55
      */
     public function setAppId($appId = '')
     {
@@ -85,12 +85,12 @@ class Facebook implements Environment, FacebookInterface
     /**
      * Function setAdminId
      *
-     * @param string $adminId
+     * @param $adminId
      *
-     * @return $this|\nguyenanhung\SEO\Social\FacebookInterface
+     * @return $this
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 10/4/19 33:46
+     * @time     : 08/02/2023 11:58
      */
     public function setAdminId($adminId = '')
     {
@@ -115,12 +115,12 @@ class Facebook implements Environment, FacebookInterface
     /**
      * Function setRedirectUrl
      *
-     * @param string $redirectUrl
+     * @param $redirectUrl
      *
-     * @return $this|\nguyenanhung\SEO\Social\FacebookInterface
+     * @return $this
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 10/4/19 33:57
+     * @time     : 08/02/2023 12:01
      */
     public function setRedirectUrl($redirectUrl = '')
     {
@@ -145,21 +145,21 @@ class Facebook implements Environment, FacebookInterface
     /**
      * Function createShareLink
      *
-     * @param string $url
-     * @param string $caption
+     * @param $url
+     * @param $caption
      *
-     * @return $this|\nguyenanhung\SEO\Social\FacebookInterface
+     * @return $this
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 10/4/19 34:08
+     * @time     : 08/02/2023 12:04
      */
     public function createShareLink($url = '', $caption = '')
     {
         if (empty($caption) && !empty($this->redirectUrl)) {
             $parseUrl = parse_url($this->redirectUrl);
-            $caption  = $parseUrl['host'];
+            $caption = $parseUrl['host'];
         }
-        $params     = array(
+        $params = array(
             'app_id'       => $this->appId,
             'caption'      => $caption,
             'href'         => $url . '?utm_source=facebook&utm_medium=link_share&utm_campaign=facebook_share',
@@ -173,21 +173,21 @@ class Facebook implements Environment, FacebookInterface
     /**
      * Function graphShare
      *
-     * @param string $url
+     * @param $url
      *
-     * @return $this|\nguyenanhung\SEO\Social\FacebookInterface
+     * @return $this
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 10/4/19 34:18
+     * @time     : 08/02/2023 12:08
      */
     public function graphShare($url = '')
     {
-        $params  = array('id' => $url);
+        $params = array('id' => $url);
         $request = Utils::sendRequest(self::GRAPH_URI, $params);
         if (!empty($request)) {
-            $this->graphShare = json_decode(trim($request));
+            $this->graphShare = json_decode(trim($request), false);
         } else {
-            $this->graphShare = NULL;
+            $this->graphShare = null;
         }
 
         return $this;

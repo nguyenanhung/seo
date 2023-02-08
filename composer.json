@@ -25,10 +25,12 @@
         "php": ">=5.6",
         "ext-curl": "*",
         "ext-json": "*",
-        "nguyenanhung/slug-helper": "^1.0",
+        "ext-mbstring": "*",
         "nguyenanhung/hashids-helper": "^1.0",
+        "nguyenanhung/slug-helper": "^1.0",
         "nguyenanhung/nanoid-helper": "^1.0",
-        "ext-mbstring": "*"
+        "nguyenanhung/escape-helper": "^1.0",
+        "paragonie/random_compat": ">=2.0"
     },
     "require-dev": {
         "kint-php/kint": ">=3.0"
@@ -38,7 +40,8 @@
             "nguyenanhung\\SEO\\": "src/"
         },
         "files": [
-            "helpers/common.php"
+            "helpers/common.php",
+            "helpers/meta_tag.php"
         ]
     },
     "suggest": {

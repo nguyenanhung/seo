@@ -19,7 +19,7 @@ use nguyenanhung\SEO\Version;
  * @author    713uk13m <dev@nguyenanhung.com>
  * @copyright 713uk13m <dev@nguyenanhung.com>
  */
-class GooglePlus implements Environment, GooglePlusInterface
+class GooglePlus implements Environment
 {
     use Version, SocialTrait;
 
@@ -40,16 +40,16 @@ class GooglePlus implements Environment, GooglePlusInterface
     /**
      * Function createShareLink
      *
-     * @param string $url
+     * @param $url
      *
-     * @return $this|\nguyenanhung\SEO\Social\GooglePlusInterface
+     * @return $this
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 10/4/19 34:52
+     * @time     : 08/02/2023 12:23
      */
     public function createShareLink($url = '')
     {
-        $params     = array('url' => $url . '?utm_source=google%2B&utm_medium=link_share&utm_campaign=google_plus_share');
+        $params = array('url' => $url . '?utm_source=google%2B&utm_medium=link_share&utm_campaign=google_plus_share');
         $this->link = self::SHARE_URI . '?' . http_build_query($params);
 
         return $this;

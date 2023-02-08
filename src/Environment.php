@@ -17,13 +17,13 @@ namespace nguyenanhung\SEO;
  */
 interface Environment
 {
-    const VERSION       = '2.1.0';
-    const LAST_MODIFIED = '2023-02-01';
-    const AUTHOR_NAME   = 'Hung Nguyen';
-    const AUTHOR_EMAIL  = 'dev@nguyenanhung.com';
-    const PROJECT_NAME  = 'Search Engine Optimization Manager';
+    const VERSION = '2.1.1';
+    const LAST_MODIFIED = '2023-02-08';
+    const AUTHOR_NAME = 'Hung Nguyen';
+    const AUTHOR_EMAIL = 'dev@nguyenanhung.com';
+    const PROJECT_NAME = 'Search Engine Optimization Manager';
     const USE_BENCHMARK = false;
-    const USE_DEBUG     = false;
+    const USE_DEBUG = false;
 
     /**
      * Hàm lấy thông tin phiên bản Package
