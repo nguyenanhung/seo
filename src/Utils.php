@@ -33,12 +33,10 @@ class Utils
      */
     public static function jsonItem($json = '', $output = '')
     {
-        $result = json_decode(trim($json));
+        $result = json_decode(trim($json), false);
         $output = trim($output);
-        if ($result !== null) {
-            if (isset($result->$output)) {
-                return trim($result->$output);
-            }
+        if (($result !== null) && isset($result->$output)) {
+            return trim($result->$output);
         }
 
         return null;

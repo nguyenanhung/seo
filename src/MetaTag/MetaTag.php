@@ -20,7 +20,7 @@ namespace nguyenanhung\SEO\MetaTag;
 class MetaTag
 {
     const GENERATOR = "BEAR Framework v3.0";
-    const AUTHOR    = 'Nguyen An Hung';
+    const AUTHOR = 'Nguyen An Hung';
 
     protected $data;
     protected $response;

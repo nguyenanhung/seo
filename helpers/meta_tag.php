@@ -49,7 +49,7 @@ if (!function_exists('default_news_article_html_tag')) {
     function default_news_article_html_tag($firstSegment = '')
     {
         $html = '';
-        if (empty($firstSegment) || $firstSegment == '') {
+        if (empty($firstSegment)) {
             $html .= "<html lang=\"vi\" xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:og=\"https://ogp.me/ns#\" xmlns:fb=\"https://www.facebook.com/2008/fbml\">\n";
             $html .= "<head prefix=\"og: https://ogp.me/ns#\">\n";
         } else {

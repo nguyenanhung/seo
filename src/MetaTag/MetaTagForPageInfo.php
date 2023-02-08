@@ -21,34 +21,33 @@ use nguyenanhung\SEO\Utils;
  */
 class MetaTagForPageInfo extends MetaTag
 {
-    protected $exampleData
-        = array(
-            'homepageUrl',
-            'assetsUrl',
-            'canonical_url',
-            'facebook_profile',
-            'locale',
-            'language',
-            'web_author',
-            'brand_name',
-            'site_name',
-            'site_slogan',
-            'site_title',
-            'site_description',
-            'site_keywords',
-            'site_images',
-            'site_thumbnail',
-            'site_email',
-            'seo_robots',
-            'seo_revisit-after',
-            'seo_geo_tagging',
-            'social_profile_json',
-            'content_created_at',
-            'content_updated_at',
-            'content_author',
-            'content_name',
-            'content_slugs',
-        );
+    protected $exampleData = array(
+        'homepageUrl',
+        'assetsUrl',
+        'canonical_url',
+        'facebook_profile',
+        'locale',
+        'language',
+        'web_author',
+        'brand_name',
+        'site_name',
+        'site_slogan',
+        'site_title',
+        'site_description',
+        'site_keywords',
+        'site_images',
+        'site_thumbnail',
+        'site_email',
+        'seo_robots',
+        'seo_revisit-after',
+        'seo_geo_tagging',
+        'social_profile_json',
+        'content_created_at',
+        'content_updated_at',
+        'content_author',
+        'content_name',
+        'content_slugs',
+    );
 
     public function buildMetaContent()
     {
