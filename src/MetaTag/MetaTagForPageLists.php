@@ -21,27 +21,26 @@ use nguyenanhung\SEO\Utils;
  */
 class MetaTagForPageLists extends MetaTag
 {
-    protected $exampleData
-        = array(
-            'homepageUrl',
-            'assetsUrl',
-            'canonical_url',
-            'facebook_profile',
-            'locale',
-            'language',
-            'web_author',
-            'site_name',
-            'site_slogan',
-            'site_title',
-            'site_description',
-            'site_keywords',
-            'site_images',
-            'site_email',
-            'seo_robots',
-            'seo_revisit-after',
-            'seo_geo_tagging',
-            'social_profile_json'
-        );
+    protected $exampleData = array(
+        'homepageUrl',
+        'assetsUrl',
+        'canonical_url',
+        'facebook_profile',
+        'locale',
+        'language',
+        'web_author',
+        'site_name',
+        'site_slogan',
+        'site_title',
+        'site_description',
+        'site_keywords',
+        'site_images',
+        'site_email',
+        'seo_robots',
+        'seo_revisit-after',
+        'seo_geo_tagging',
+        'social_profile_json'
+    );
 
     public function buildMetaContent()
     {
