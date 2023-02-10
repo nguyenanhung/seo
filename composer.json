@@ -25,12 +25,12 @@
         "php": ">=7.0",
         "ext-curl": "*",
         "ext-json": "*",
+        "ext-mbstring": "*",
         "nguyenanhung/hashids-helper": "^2.0",
         "nguyenanhung/slug-helper": "^2.0",
         "nguyenanhung/nanoid-helper": "^2.0",
         "nguyenanhung/escape-helper": "^2.0",
-        "paragonie/random_compat": ">=2.0",
-        "ext-mbstring": "*"
+        "paragonie/random_compat": ">=2.0"
     },
     "require-dev": {
         "kint-php/kint": ">=3.0"
