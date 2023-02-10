@@ -41,13 +41,35 @@ class MetaTag
         return $this;
     }
 
+    /**
+     * Function isJson
+     *
+     * @param $json
+     *
+     * @return bool
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 10/02/2023 26:17
+     */
+    public function isJson($json = '')
+    {
+        $decode = json_decode(trim($json), true);
+
+        return !($decode === null);
+    }
+
     public function getDataItem($item = null)
     {
         if (empty($item)) {
             return null;
         }
         if (is_array($this->data) && isset($this->data[$item])) {
-            return escapeHtml($this->data[$item]);
+            $dataItem = trim($this->data[$item]);
+            if ($this->isJson($dataItem)) {
+                return $dataItem;
+            }
+
+            return escapeHtml($dataItem);
         }
 
         return null;
