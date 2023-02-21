@@ -25,6 +25,26 @@ class MetaTag
     protected $response;
 
     /**
+     * Function generatorInfo
+     *
+     * @return mixed|string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 21/02/2023 21:48
+     */
+    public function generatorInfo()
+    {
+        if (function_exists('webBuilderGeneratorService')) {
+            return webBuilderGeneratorService();
+        }
+        if (function_exists('webBuilderSdkDataVersion')) {
+            return webBuilderSdkDataVersion()['VERSION'];
+        }
+
+        return self::GENERATOR;
+    }
+
+    /**
      * Function setData
      *
      * @param $data
