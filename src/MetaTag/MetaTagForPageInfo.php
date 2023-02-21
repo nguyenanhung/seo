@@ -78,7 +78,7 @@ class MetaTagForPageInfo extends MetaTag
             ],
             [
                 'name'    => 'generator',
-                'content' => self::GENERATOR
+                'content' => $this->generatorInfo()
             ],
             [
                 'name'    => 'author',
