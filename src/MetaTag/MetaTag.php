@@ -39,7 +39,7 @@ class MetaTag
             return webBuilderGeneratorService();
         }
         if (function_exists('webBuilderSdkDataVersion')) {
-            return webBuilderSdkDataVersion()['VERSION'];
+            return 'BEAR Framework v' . webBuilderSdkDataVersion()['VERSION'];
         }
 
         return self::GENERATOR;
