@@ -19,7 +19,7 @@ if (!function_exists('default_meta_http_equiv')) {
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 07/25/2020 22:33
      */
-    function default_meta_http_equiv($refreshContent = 3600, $contentLanguage = 'vi')
+    function default_meta_http_equiv($refreshContent = 3600, $contentLanguage = 'vi'): array
     {
         return array(
             array(
@@ -46,7 +46,7 @@ if (!function_exists('default_meta_http_equiv')) {
     }
 }
 if (!function_exists('default_news_article_html_tag')) {
-    function default_news_article_html_tag($firstSegment = '')
+    function default_news_article_html_tag($firstSegment = ''): string
     {
         $html = '';
         if (empty($firstSegment)) {

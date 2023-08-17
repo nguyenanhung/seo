@@ -489,25 +489,32 @@ class SeoUrl implements Environment
      * Function uuidV4
      *
      * @return string
-     * @throws \Exception
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 09/24/2021 04:30
+     * @time     : 17/08/2023 21:15
      */
     public function uuidV4(): string
     {
-        return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x', // 32 bits for "time_low"
-                       random_int(0, 0xffff), random_int(0, 0xffff), // 16 bits for "time_mid"
-                       random_int(0, 0xffff), // 16 bits for "time_hi_and_version",
+        try {
+            return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x', // 32 bits for "time_low"
+                           random_int(0, 0xffff), random_int(0, 0xffff), // 16 bits for "time_mid"
+                           random_int(0, 0xffff), // 16 bits for "time_hi_and_version",
 
-            // four most significant bits holds version number 4
-                       random_int(0, 0x0fff) | 0x4000, // 16 bits, 8 bits for "clk_seq_hi_res",
+                // four most significant bits holds version number 4
+                           random_int(0, 0x0fff) | 0x4000, // 16 bits, 8 bits for "clk_seq_hi_res",
 
-            // 8 bits for "clk_seq_low",
+                // 8 bits for "clk_seq_low",
 
-            // two most significant bits holds zero and one for variant DCE1.1
-                       random_int(0, 0x3fff) | 0x8000, // 48 bits for "node"
-                       random_int(0, 0xffff), random_int(0, 0xffff), random_int(0, 0xffff));
+                // two most significant bits holds zero and one for variant DCE1.1
+                           random_int(0, 0x3fff) | 0x8000, // 48 bits for "node"
+                           random_int(0, 0xffff), random_int(0, 0xffff), random_int(0, 0xffff));
+        } catch (\Exception $exception) {
+            if (function_exists('log_message')) {
+                log_message('error', 'Error Code: '.$exception->getCode().' - File: '.$exception->getFile().' - Line: '.$exception->getLine().' - '.$exception->getMessage());
+                log_message('error', 'Error Trace: '.$exception->getTraceAsString());
+            }
+            return $this->randomNanoId();
+        }
     }
 
     /**
@@ -789,10 +796,7 @@ class SeoUrl implements Environment
         if (function_exists('base_url')) {
             return base_url();
         }
-        if (isset($this->sdkConfig[self::HANDLE_CONFIG_KEY]['homepage'])) {
-            return $this->sdkConfig[self::HANDLE_CONFIG_KEY]['homepage'];
-        }
 
-        return $this->siteUrl;
+        return $this->sdkConfig[self::HANDLE_CONFIG_KEY]['homepage'] ?? $this->siteUrl;
     }
 }
