@@ -82,7 +82,7 @@ class MetaTagForDefaultPage extends MetaTag
             ],
             [
                 'name'    => 'dc.created',
-                'content' => $this->getDataItem('dc.created')
+                'content' => !empty($this->getDataItem('dc_created')) ? $this->getDataItem('dc_created') : $this->getDataItem('dc.created')
             ],
             [
                 'name'    => 'dc.publisher',
