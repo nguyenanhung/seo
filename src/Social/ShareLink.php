@@ -18,7 +18,7 @@ class ShareLink
     /**
      * Function setData
      *
-     * @param array $data
+     * @param  array  $data
      *
      * @return $this
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -35,10 +35,10 @@ class ShareLink
     /**
      * Function getFacebookAppId
      *
+     * @return mixed|string
      * @author: 713uk13m <dev@nguyenanhung.com>
      * @time  : 11/6/18 16:31
      *
-     * @return mixed|string
      */
     public function getFacebookAppId()
     {
@@ -48,10 +48,10 @@ class ShareLink
     /**
      * Function getFacebookAdminId
      *
+     * @return mixed|string
      * @author: 713uk13m <dev@nguyenanhung.com>
      * @time  : 11/6/18 16:31
      *
-     * @return mixed|string
      */
     public function getFacebookAdminId()
     {
@@ -61,32 +61,34 @@ class ShareLink
     /**
      * Function facebookShare
      *
+     * @param  string  $url
+     * @param  string  $text  aka Caption
+     *
+     * @return string
      * @author: 713uk13m <dev@nguyenanhung.com>
      * @time  : 11/6/18 16:28
      *
-     * @param string $url
-     * @param string $text aka Caption
-     *
-     * @return string
      */
     public function facebookShare(string $url = '', string $text = ''): string
     {
         $facebook = new Facebook();
 
-        return $facebook->setAppId($this->data['facebook']['appId'])->setAdminId($this->data['facebook']['adminId'])->setRedirectUrl($this->data['facebook']['redirectUrl'])->createShareLink($url, $text)->getLink();
+        return $facebook->setAppId($this->data['facebook']['appId'])->setAdminId(
+            $this->data['facebook']['adminId']
+        )->setRedirectUrl($this->data['facebook']['redirectUrl'])->createShareLink($url, $text)->getLink();
     }
 
     /**
      * Function twitterShare
      *
+     * @param  string  $url
+     * @param  string  $text
+     * @param  string  $referer
+     *
+     * @return string
      * @author: 713uk13m <dev@nguyenanhung.com>
      * @time  : 11/6/18 16:29
      *
-     * @param string $url
-     * @param string $text
-     * @param string $referer
-     *
-     * @return string
      */
     public function twitterShare(string $url = '', string $text = '', string $referer = ''): string
     {
@@ -98,12 +100,12 @@ class ShareLink
     /**
      * Function googlePlusShare
      *
+     * @param  string  $url
+     *
+     * @return string
      * @author: 713uk13m <dev@nguyenanhung.com>
      * @time  : 11/6/18 16:30
      *
-     * @param string $url
-     *
-     * @return string
      */
     public function googlePlusShare(string $url = ''): string
     {

@@ -66,7 +66,7 @@ class MetaTag
     {
         $decode = json_decode(trim($json), true);
 
-        return !($decode === null);
+        return ! ($decode === null);
     }
 
     public function getDataItem($item = null)

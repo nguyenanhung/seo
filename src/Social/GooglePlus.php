@@ -40,7 +40,7 @@ class GooglePlus implements Environment
     /**
      * Function createShareLink
      *
-     * @param string $url
+     * @param  string  $url
      *
      * @return $this
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -49,7 +49,7 @@ class GooglePlus implements Environment
      */
     public function createShareLink(string $url = ''): GooglePlus
     {
-        $params     = array('url' => $url . '?utm_source=google%2B&utm_medium=link_share&utm_campaign=google_plus_share');
+        $params = array('url' => $url . '?utm_source=google%2B&utm_medium=link_share&utm_campaign=google_plus_share');
         $this->link = self::SHARE_URI . '?' . http_build_query($params);
 
         return $this;

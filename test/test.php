@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Project seo
  * Created by PhpStorm
@@ -12,15 +13,15 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use nguyenanhung\SEO\SeoUrl;
 
 $config = array(
-    'salt'          => 'w40):pc6cwS{mn9I_O=B$2Cr;=YXA#',
+    'salt' => 'w40):pc6cwS{mn9I_O=B$2Cr;=YXA#',
     'minHashLength' => 8,
-    'alphabet'      => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+    'alphabet' => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
 );
 
 $seo = new SeoUrl();
 $seo->setHashIds($config)->setSiteUrl('https://nguyenanhung.com');
 
-$id    = 20210925;
+$id = 20210925;
 $title = 'Nguyễn An Hưng';
 
 echo "title: " . $title . PHP_EOL;

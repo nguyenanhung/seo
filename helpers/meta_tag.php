@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Project seo
  * Created by PhpStorm
@@ -7,12 +8,12 @@
  * Date: 09/12/2022
  * Time: 23:28
  */
-if (!function_exists('default_meta_http_equiv')) {
+if ( ! function_exists('default_meta_http_equiv')) {
     /**
      * Function default_meta_http_equiv
      *
-     * @param int    $refreshContent
-     * @param string $contentLanguage
+     * @param  int  $refreshContent
+     * @param  string  $contentLanguage
      *
      * @return array
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -23,29 +24,29 @@ if (!function_exists('default_meta_http_equiv')) {
     {
         return array(
             array(
-                'name'    => 'X-UA-Compatible',
+                'name' => 'X-UA-Compatible',
                 'content' => 'IE=edge',
-                'type'    => 'http-equiv'
+                'type' => 'http-equiv'
             ),
             array(
-                'name'    => 'refresh',
+                'name' => 'refresh',
                 'content' => $refreshContent,
-                'type'    => 'equiv'
+                'type' => 'equiv'
             ),
             array(
-                'name'    => 'content-language',
+                'name' => 'content-language',
                 'content' => $contentLanguage,
-                'type'    => 'equiv'
+                'type' => 'equiv'
             ),
             array(
-                'name'    => 'audience',
+                'name' => 'audience',
                 'content' => 'general',
-                'type'    => 'equiv'
+                'type' => 'equiv'
             )
         );
     }
 }
-if (!function_exists('default_news_article_html_tag')) {
+if ( ! function_exists('default_news_article_html_tag')) {
     function default_news_article_html_tag($firstSegment = ''): string
     {
         $html = '';

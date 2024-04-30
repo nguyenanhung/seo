@@ -46,83 +46,85 @@ class MetaTagForPageLists extends MetaTag
     {
         return [
             [
-                'name'    => 'robots',
+                'name' => 'robots',
                 'content' => $this->getDataItem('seo_robots')
             ],
             [
-                'name'    => 'revisit-after',
+                'name' => 'revisit-after',
                 'content' => $this->getDataItem('seo_revisit-after')
             ],
             [
-                'name'    => 'description',
+                'name' => 'description',
                 'content' => $this->getDataItem('site_description')
             ],
             [
-                'name'    => 'keywords',
+                'name' => 'keywords',
                 'content' => $this->getDataItem('site_keywords')
             ],
             [
-                'name'    => 'news_keywords',
+                'name' => 'news_keywords',
                 'content' => $this->getDataItem('site_keywords')
             ],
             [
-                'name'    => 'copyright',
+                'name' => 'copyright',
                 'content' => $this->getDataItem('site_name')
             ],
             [
-                'name'    => 'generator',
+                'name' => 'generator',
                 'content' => $this->generatorInfo()
             ],
             [
-                'name'    => 'author',
+                'name' => 'author',
                 'content' => $this->getDataItem('web_author')
             ],
             [
-                'name'    => 'web_author',
+                'name' => 'web_author',
                 'content' => $this->getDataItem('web_author')
             ],
             [
-                'name'    => 'dc.created',
-                'content' => !empty($this->getDataItem('dc_created')) ? $this->getDataItem('dc_created') : $this->getDataItem('dc.created')
+                'name' => 'dc.created',
+                'content' => ! empty($this->getDataItem('dc_created')) ? $this->getDataItem(
+                    'dc_created'
+                ) : $this->getDataItem('dc.created')
             ],
             [
-                'name'    => 'dc.publisher',
+                'name' => 'dc.publisher',
                 'content' => $this->getDataItem('site_name')
             ],
             [
-                'name'    => 'dc.rights.copyright',
+                'name' => 'dc.rights.copyright',
                 'content' => $this->getDataItem('site_name')
             ],
             [
-                'name'    => 'dc.creator.name',
+                'name' => 'dc.creator.name',
                 'content' => $this->getDataItem('site_name')
             ],
             [
-                'name'    => 'dc.creator.email',
+                'name' => 'dc.creator.email',
                 'content' => $this->getDataItem('site_email')
             ],
             [
-                'name'    => 'dc.identifier',
+                'name' => 'dc.identifier',
                 'content' => $this->getDataItem('homepageUrl')
             ],
             [
-                'name'    => 'dc.language',
+                'name' => 'dc.language',
                 'content' => $this->getDataItem('language')
             ],
             [
-                'name'    => 'geo.placename',
+                'name' => 'geo.placename',
                 'content' => Utils::jsonItem($this->getDataItem('seo_geo_tagging'), 'placename')
             ],
             [
-                'name'    => 'geo.region',
+                'name' => 'geo.region',
                 'content' => Utils::jsonItem($this->getDataItem('seo_geo_tagging'), 'region')
             ],
             [
-                'name'    => 'geo.position',
+                'name' => 'geo.position',
                 'content' => Utils::jsonItem($this->getDataItem('seo_geo_tagging'), 'position')
             ],
             [
-                'name'    => 'ICBM',
+                'name' => 'ICBM',
                 'content' => Utils::jsonItem($this->getDataItem('seo_geo_tagging'), 'ICBM')
             ]
         ];
@@ -133,67 +135,67 @@ class MetaTagForPageLists extends MetaTag
         return [
             [
                 'property' => 'fb:app_id',
-                'content'  => Utils::jsonItem($this->getDataItem('facebook_profile'), 'app_id')
+                'content' => Utils::jsonItem($this->getDataItem('facebook_profile'), 'app_id')
             ],
             [
                 'property' => 'fb:admins',
-                'content'  => Utils::jsonItem($this->getDataItem('facebook_profile'), 'admins')
+                'content' => Utils::jsonItem($this->getDataItem('facebook_profile'), 'admins')
             ],
             [
                 'property' => 'og:locale',
-                'content'  => Utils::jsonItem($this->getDataItem('facebook_profile'), 'locale')
+                'content' => Utils::jsonItem($this->getDataItem('facebook_profile'), 'locale')
             ],
             [
                 'property' => 'og:type',
-                'content'  => 'website'
+                'content' => 'website'
             ],
             [
                 'property' => 'og:title',
-                'content'  => $this->getDataItem('site_title')
+                'content' => $this->getDataItem('site_title')
             ],
             [
                 'property' => 'og:description',
-                'content'  => $this->getDataItem('site_description')
+                'content' => $this->getDataItem('site_description')
             ],
             [
                 'property' => 'og:url',
-                'content'  => $this->getDataItem('canonical_url')
+                'content' => $this->getDataItem('canonical_url')
             ],
             [
                 'property' => 'og:image',
-                'content'  => trim($this->getDataItem('site_images'))
+                'content' => trim($this->getDataItem('site_images'))
             ],
             [
                 'property' => 'og:image:url',
-                'content'  => trim($this->getDataItem('site_images'))
+                'content' => trim($this->getDataItem('site_images'))
             ],
             [
                 'property' => 'og:image:alt',
-                'content'  => Utils::slugify($this->getDataItem('site_name'))
+                'content' => Utils::slugify($this->getDataItem('site_name'))
             ],
             [
                 'property' => 'og:site_name',
-                'content'  => $this->getDataItem('site_slogan')
+                'content' => $this->getDataItem('site_slogan')
             ],
             [
                 'property' => 'title',
-                'content'  => $this->getDataItem('site_title'),
-                'type'     => 'itemprop'
+                'content' => $this->getDataItem('site_title'),
+                'type' => 'itemprop'
             ],
             [
                 'property' => 'description',
-                'content'  => $this->getDataItem('site_slogan'),
-                'type'     => 'itemprop'
+                'content' => $this->getDataItem('site_slogan'),
+                'type' => 'itemprop'
             ],
             [
                 'property' => 'url',
-                'content'  => $this->getDataItem('canonical_url'),
-                'type'     => 'itemprop'
+                'content' => $this->getDataItem('canonical_url'),
+                'type' => 'itemprop'
             ],
             [
                 'property' => 'image',
-                'content'  => trim($this->getDataItem('site_images')),
-                'type'     => 'itemprop'
+                'content' => trim($this->getDataItem('site_images')),
+                'type' => 'itemprop'
             ]
         ];
     }
@@ -201,12 +203,12 @@ class MetaTagForPageLists extends MetaTag
     public function buildGoogleSearchSchema()
     {
         return [
-            "@context"      => "https://schema.org",
-            "@type"         => "WebSite",
-            "name"          => $this->getDataItem('site_title'),
+            "@context" => "https://schema.org",
+            "@type" => "WebSite",
+            "name" => $this->getDataItem('site_title'),
             "alternateName" => $this->getDataItem('site_slogan'),
-            "dateModified"  => date('Y-m-d H:i'),
-            "url"           => $this->getDataItem('canonical_url')
+            "dateModified" => date('Y-m-d H:i'),
+            "url" => $this->getDataItem('canonical_url')
         ];
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Project seo.
  * Created by PhpStorm.
@@ -6,11 +7,11 @@
  * Date: 2018-12-31
  * Time: 01:53
  */
-if (!function_exists('add_this_script')) {
+if ( ! function_exists('add_this_script')) {
     /**
      * Function add_this_script
      *
-     * @param string $id
+     * @param  string  $id
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -22,11 +23,11 @@ if (!function_exists('add_this_script')) {
         return '<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=' . $id . '"></script>';
     }
 }
-if (!function_exists('facebook_comments')) {
+if ( ! function_exists('facebook_comments')) {
     /**
      * Function facebook_comments
      *
-     * @param string $link
+     * @param  string  $link
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
