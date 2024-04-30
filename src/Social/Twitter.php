@@ -40,9 +40,9 @@ class Twitter implements Environment
     /**
      * Function createShareLink
      *
-     * @param string $url
-     * @param string $text
-     * @param string $referer
+     * @param  string  $url
+     * @param  string  $text
+     * @param  string  $referer
      *
      * @return $this
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -54,9 +54,9 @@ class Twitter implements Environment
         if (empty($referer)) {
             $referer = $url;
         }
-        $params     = array(
-            'url'              => $url . '?utm_source=twitter&utm_medium=link_share&utm_campaign=twitter_share',
-            'text'             => $text,
+        $params = array(
+            'url' => $url . '?utm_source=twitter&utm_medium=link_share&utm_campaign=twitter_share',
+            'text' => $text,
             'original_referer' => $referer
         );
         $this->link = self::SHARE_URI . '?' . http_build_query($params);

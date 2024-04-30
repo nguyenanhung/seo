@@ -17,8 +17,8 @@ namespace nguyenanhung\SEO;
  */
 interface Environment
 {
-    const VERSION = '3.1.6';
-    const LAST_MODIFIED = '2023-10-19';
+    const VERSION = '3.1.7';
+    const LAST_MODIFIED = '2024-05-01';
     const AUTHOR_NAME = 'Hung Nguyen';
     const AUTHOR_EMAIL = 'dev@nguyenanhung.com';
     const AUTHOR_URL = 'https://nguyenanhung.com';
@@ -29,10 +29,10 @@ interface Environment
     /**
      * Hàm lấy thông tin phiên bản Package
      *
+     * @return string Current Project Version, VD: 0.1.0
      * @author  : 713uk13m <dev@nguyenanhung.com>
      * @time    : 10/13/18 15:12
      *
-     * @return string Current Project Version, VD: 0.1.0
      */
     public function getVersion(): string;
 }

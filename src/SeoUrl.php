@@ -52,7 +52,7 @@ class SeoUrl implements Environment
     /**
      * Function setSdkConfig
      *
-     * @param array $sdkConfig
+     * @param  array  $sdkConfig
      *
      * @return $this
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -82,7 +82,7 @@ class SeoUrl implements Environment
     /**
      * Function getPageNumber
      *
-     * @param string $pageNumber
+     * @param  string  $pageNumber
      *
      * @return array|string|string[]
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -97,7 +97,7 @@ class SeoUrl implements Environment
     /**
      * Function setSiteUrl
      *
-     * @param string $siteUrl
+     * @param  string  $siteUrl
      *
      * @return $this
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -184,13 +184,12 @@ class SeoUrl implements Environment
         }
 
         return $url;
-
     }
 
     /**
      * Function assetsUrl
      *
-     * @param string $uri
+     * @param  string  $uri
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -210,9 +209,9 @@ class SeoUrl implements Environment
     /**
      * Function assetsUrlThemes
      *
-     * @param string $themes
-     * @param string $uri
-     * @param string $assetFolder
+     * @param  string  $themes
+     * @param  string  $uri
+     * @param  string  $assetFolder
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -242,7 +241,7 @@ class SeoUrl implements Environment
     /**
      * Function faviconUrl
      *
-     * @param string $uri
+     * @param  string  $uri
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -257,7 +256,7 @@ class SeoUrl implements Environment
     /**
      * Function imageUrl
      *
-     * @param string $input
+     * @param  string  $input
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -280,7 +279,7 @@ class SeoUrl implements Environment
         $assetsUrl = $this->sdkConfig[self::HANDLE_CONFIG_KEY]['assets_url'];
         $staticUrl = $this->sdkConfig[self::HANDLE_CONFIG_KEY]['static_url'];
         $imageUrl = trim($input);
-        if (!empty($imageUrl)) {
+        if ( ! empty($imageUrl)) {
             $noThumbnail = $config['no_thumb'];
             if (in_array($imageUrl, $noThumbnail)) {
                 return $assetsUrl . trim($imageUrl);
@@ -294,7 +293,9 @@ class SeoUrl implements Environment
             if (trim(mb_substr($imageUrl, 0, 12)) === 'crawler-news') {
                 $imageUrl = trim('uploads/' . $imageUrl);
             }
-            $imageUrl = str_replace(array('upload-vcms/news/news/', 'upload-vcms/mheath/mheath/'), array('upload-vcms/news/', 'upload-vcms/mheath/'), $imageUrl);
+            $imageUrl = str_replace(array('upload-vcms/news/news/', 'upload-vcms/mheath/mheath/'),
+                array('upload-vcms/news/', 'upload-vcms/mheath/'),
+                $imageUrl);
 
             return $staticUrl . $imageUrl;
         }
@@ -305,7 +306,7 @@ class SeoUrl implements Environment
     /**
      * Function setHashIds
      *
-     * @param array $hashIdsConfig
+     * @param  array  $hashIdsConfig
      *
      * @return $this
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -335,12 +336,12 @@ class SeoUrl implements Environment
     /**
      * Function slugify - SEO Slugify
      *
+     * @param  string  $str
+     *
+     * @return string
      * @author: 713uk13m <dev@nguyenanhung.com>
      * @time  : 9/21/18 02:49
      *
-     * @param string $str
-     *
-     * @return string
      */
     public function slugify(string $str = ''): string
     {
@@ -350,12 +351,12 @@ class SeoUrl implements Environment
     /**
      * Function search_slugify - SEO Search Slugify
      *
+     * @param  string  $str
+     *
+     * @return string
      * @author: 713uk13m <dev@nguyenanhung.com>
      * @time  : 9/21/18 02:50
      *
-     * @param string $str
-     *
-     * @return string
      */
     public function search_slugify(string $str = ''): string
     {
@@ -365,7 +366,7 @@ class SeoUrl implements Environment
     /**
      * Function searchSlugify
      *
-     * @param string $str
+     * @param  string  $str
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -380,12 +381,12 @@ class SeoUrl implements Environment
     /**
      * Function strToEn - Str To English
      *
+     * @param  string  $str
+     *
+     * @return string
      * @author: 713uk13m <dev@nguyenanhung.com>
      * @time  : 9/21/18 02:50
      *
-     * @param string $str
-     *
-     * @return string
      */
     public function strToEn(string $str = ''): string
     {
@@ -395,7 +396,7 @@ class SeoUrl implements Environment
     /**
      * Function str_to_en
      *
-     * @param string $str
+     * @param  string  $str
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -420,7 +421,7 @@ class SeoUrl implements Environment
     public function encodeId($id): string
     {
         $hash = new Hashids();
-        if (!is_array($this->hashids)) {
+        if ( ! is_array($this->hashids)) {
             $config = array();
         } else {
             $config = $this->hashids;
@@ -443,7 +444,7 @@ class SeoUrl implements Environment
     public function decodeId($string)
     {
         $hash = new Hashids();
-        if (!is_array($this->hashids)) {
+        if ( ! is_array($this->hashids)) {
             $config = array();
         } else {
             $config = $this->hashids;
@@ -469,7 +470,7 @@ class SeoUrl implements Environment
     /**
      * Function randomNanoId
      *
-     * @param int $size
+     * @param  int  $size
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -496,22 +497,31 @@ class SeoUrl implements Environment
     public function uuidV4(): string
     {
         try {
-            return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x', // 32 bits for "time_low"
-                           random_int(0, 0xffff), random_int(0, 0xffff), // 16 bits for "time_mid"
-                           random_int(0, 0xffff), // 16 bits for "time_hi_and_version",
+            return sprintf(
+                '%04x%04x-%04x-%04x-%04x-%04x%04x%04x', // 32 bits for "time_low"
+                random_int(0, 0xffff),
+                random_int(0, 0xffff), // 16 bits for "time_mid"
+                random_int(0, 0xffff), // 16 bits for "time_hi_and_version",
 
                 // four most significant bits holds version number 4
-                           random_int(0, 0x0fff) | 0x4000, // 16 bits, 8 bits for "clk_seq_hi_res",
+                random_int(0, 0x0fff) | 0x4000, // 16 bits, 8 bits for "clk_seq_hi_res",
 
                 // 8 bits for "clk_seq_low",
 
                 // two most significant bits holds zero and one for variant DCE1.1
-                           random_int(0, 0x3fff) | 0x8000, // 48 bits for "node"
-                           random_int(0, 0xffff), random_int(0, 0xffff), random_int(0, 0xffff));
+                random_int(0, 0x3fff) | 0x8000, // 48 bits for "node"
+                random_int(0, 0xffff),
+                random_int(0, 0xffff),
+                random_int(0, 0xffff)
+            );
         } catch (\Exception $exception) {
             if (function_exists('log_message')) {
-                log_message('error', 'Error Code: '.$exception->getCode().' - File: '.$exception->getFile().' - Line: '.$exception->getLine().' - '.$exception->getMessage());
-                log_message('error', 'Error Trace: '.$exception->getTraceAsString());
+                log_message(
+                    'error',
+                    'Error Code: ' . $exception->getCode() . ' - File: ' . $exception->getFile(
+                    ) . ' - Line: ' . $exception->getLine() . ' - ' . $exception->getMessage()
+                );
+                log_message('error', 'Error Trace: ' . $exception->getTraceAsString());
             }
             return $this->randomNanoId();
         }
@@ -520,10 +530,10 @@ class SeoUrl implements Environment
     /**
      * Function urlPost
      *
-     * @param string          $categorySlug
-     * @param string          $postSlug
-     * @param string|int      $postId
-     * @param string|int|null $postType
+     * @param  string  $categorySlug
+     * @param  string  $postSlug
+     * @param  string|int  $postId
+     * @param  string|int|null  $postType
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -532,16 +542,18 @@ class SeoUrl implements Environment
      */
     public function urlPost(string $categorySlug = '', string $postSlug = '', $postId = '', $postType = null): string
     {
-        return $this->homeUrl() . trim($categorySlug) . '/' . trim($postSlug) . '-post' . $this->encodeId(trim($postId)) . $this->siteExt;
+        return $this->homeUrl() . trim($categorySlug) . '/' . trim($postSlug) . '-post' . $this->encodeId(
+                trim($postId)
+            ) . $this->siteExt;
     }
 
     /**
      * Function url_post
      *
-     * @param string          $categorySlug
-     * @param string          $postSlug
-     * @param string|int      $postId
-     * @param string|int|null $postType
+     * @param  string  $categorySlug
+     * @param  string  $postSlug
+     * @param  string|int  $postId
+     * @param  string|int|null  $postType
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -556,7 +568,7 @@ class SeoUrl implements Environment
     /**
      * Function urlPostShare
      *
-     * @param string|int $postId
+     * @param  string|int  $postId
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -573,8 +585,8 @@ class SeoUrl implements Environment
     /**
      * Function urlPage
      *
-     * @param string     $pageSlug
-     * @param string|int $pageId
+     * @param  string  $pageSlug
+     * @param  string|int  $pageId
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -583,14 +595,16 @@ class SeoUrl implements Environment
      */
     public function urlPage(string $pageSlug = '', $pageId = ''): string
     {
-        return $this->homeUrl() . trim('pages/' . trim($pageSlug) . '-page' . $this->encodeId(trim($pageId))) . $this->siteExt;
+        return $this->homeUrl() . trim(
+                'pages/' . trim($pageSlug) . '-page' . $this->encodeId(trim($pageId))
+            ) . $this->siteExt;
     }
 
     /**
      * Function url_page
      *
-     * @param string     $pageSlug
-     * @param string|int $pageId
+     * @param  string  $pageSlug
+     * @param  string|int  $pageId
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -605,7 +619,7 @@ class SeoUrl implements Environment
     /**
      * Function urlPageShare
      *
-     * @param string $pageId
+     * @param  string  $pageId
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -626,7 +640,7 @@ class SeoUrl implements Environment
     /**
      * Function helpPage
      *
-     * @param string $slug
+     * @param  string  $slug
      *
      * @return bool|string|null
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -646,7 +660,7 @@ class SeoUrl implements Environment
     /**
      * Function urlCategory
      *
-     * @param string $categorySlug
+     * @param  string  $categorySlug
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -666,7 +680,7 @@ class SeoUrl implements Environment
     /**
      * Function urlTopic
      *
-     * @param string $topicSlug
+     * @param  string  $topicSlug
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -686,7 +700,7 @@ class SeoUrl implements Environment
     /**
      * Function urlTags
      *
-     * @param string $tagSlug
+     * @param  string  $tagSlug
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -706,7 +720,7 @@ class SeoUrl implements Environment
     /**
      * Function urlChannels
      *
-     * @param string $channelCode
+     * @param  string  $channelCode
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -726,7 +740,7 @@ class SeoUrl implements Environment
     /**
      * Function urlEncode
      *
-     * @param string $url
+     * @param  string  $url
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -741,7 +755,7 @@ class SeoUrl implements Environment
     /**
      * Function urlDecode
      *
-     * @param string $url
+     * @param  string  $url
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -756,7 +770,7 @@ class SeoUrl implements Environment
     /**
      * Function parseUrl
      *
-     * @param string $url
+     * @param  string  $url
      *
      * @return array|false|int|string|null
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -771,7 +785,7 @@ class SeoUrl implements Environment
     /**
      * Function cleanText
      *
-     * @param string $str
+     * @param  string  $str
      *
      * @return string
      * @author   : 713uk13m <dev@nguyenanhung.com>

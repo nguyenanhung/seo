@@ -23,12 +23,25 @@ namespace nguyenanhung\SEO;
 class BotManager
 {
     private $privateWebsite = 0;
-    private $headerBotName  = 'robots';
-    private $allBots        = ['robots', 'googlebot', 'msnbot', 'coccocbot'];
-    private $allBotsModes   = [
-        'robots'    => ['all', 'none', 'index', 'noindex', 'follow', 'nofollow', 'archive', 'noarchive'],
-        'googlebot' => ['all', 'none', 'index', 'noindex', 'follow', 'nofollow', 'archive', 'noarchive', 'noimageindex', 'nosnippet', 'notranslate', 'unavailable_after'],
-        'msnbot'    => ['all', 'none', 'index', 'noindex', 'follow', 'nofollow', 'archive', 'noarchive'],
+    private $headerBotName = 'robots';
+    private $allBots = ['robots', 'googlebot', 'msnbot', 'coccocbot'];
+    private $allBotsModes = [
+        'robots' => ['all', 'none', 'index', 'noindex', 'follow', 'nofollow', 'archive', 'noarchive'],
+        'googlebot' => [
+            'all',
+            'none',
+            'index',
+            'noindex',
+            'follow',
+            'nofollow',
+            'archive',
+            'noarchive',
+            'noimageindex',
+            'nosnippet',
+            'notranslate',
+            'unavailable_after'
+        ],
+        'msnbot' => ['all', 'none', 'index', 'noindex', 'follow', 'nofollow', 'archive', 'noarchive'],
         'coccocbot' => ['all', 'none', 'index', 'noindex', 'follow', 'nofollow', 'archive', 'noarchive'],
     ];
 
@@ -40,12 +53,12 @@ class BotManager
      * có cấu hình chặn trong quản trị
      */
     private $defaultModes = [];
-    private $modes        = [];
+    private $modes = [];
 
     /**
      * __construct()
      *
-     * @param int $private_website
+     * @param  int  $private_website
      */
     public function __construct($private_website = 0)
     {
@@ -76,7 +89,7 @@ class BotManager
      */
     public function setAll()
     {
-        if (!$this->privateWebsite) {
+        if ( ! $this->privateWebsite) {
             $this->modes = [
                 'all' => 'all'
             ];
@@ -96,7 +109,7 @@ class BotManager
     {
         $this->modes = [
             'noindex' => 'noindex',
-            'follow'  => 'follow'
+            'follow' => 'follow'
         ];
 
         return $this;
@@ -109,7 +122,7 @@ class BotManager
      */
     public function setNone()
     {
-        if (!$this->privateWebsite) {
+        if ( ! $this->privateWebsite) {
             $this->modes = [
                 'none' => 'none'
             ];
@@ -125,7 +138,7 @@ class BotManager
      */
     public function setIndex()
     {
-        if (!$this->privateWebsite) {
+        if ( ! $this->privateWebsite) {
             unset($this->modes['all'], $this->modes['none'], $this->modes['noindex']);
             $this->modes['index'] = 'index';
         }
@@ -140,7 +153,7 @@ class BotManager
      */
     public function setNoIndex()
     {
-        if (!$this->privateWebsite) {
+        if ( ! $this->privateWebsite) {
             unset($this->modes['all'], $this->modes['none'], $this->modes['index']);
             $this->modes['noindex'] = 'noindex';
         }
@@ -156,7 +169,7 @@ class BotManager
      */
     public function setImageIndex()
     {
-        if (!$this->privateWebsite) {
+        if ( ! $this->privateWebsite) {
             unset($this->modes['noimageindex']);
         }
 
@@ -171,7 +184,7 @@ class BotManager
      */
     public function setNoImageIndex()
     {
-        if (!$this->privateWebsite) {
+        if ( ! $this->privateWebsite) {
             $this->modes['noimageindex'] = 'noimageindex';
         }
 
@@ -185,7 +198,7 @@ class BotManager
      */
     public function setFollow()
     {
-        if (!$this->privateWebsite) {
+        if ( ! $this->privateWebsite) {
             unset($this->modes['all'], $this->modes['none'], $this->modes['nofollow']);
             $this->modes['follow'] = 'follow';
         }
@@ -200,7 +213,7 @@ class BotManager
      */
     public function setNoFollow()
     {
-        if (!$this->privateWebsite) {
+        if ( ! $this->privateWebsite) {
             unset($this->modes['all'], $this->modes['none'], $this->modes['follow']);
             $this->modes['nofollow'] = 'nofollow';
         }
@@ -215,7 +228,7 @@ class BotManager
      */
     public function setArchive()
     {
-        if (!$this->privateWebsite) {
+        if ( ! $this->privateWebsite) {
             unset($this->modes['noarchive']);
             $this->modes['archive'] = 'archive';
         }
@@ -230,7 +243,7 @@ class BotManager
      */
     public function setNoArchive()
     {
-        if (!$this->privateWebsite) {
+        if ( ! $this->privateWebsite) {
             unset($this->modes['archive']);
             $this->modes['noarchive'] = 'noarchive';
         }
@@ -246,7 +259,7 @@ class BotManager
      */
     public function setSnippet()
     {
-        if (!$this->privateWebsite) {
+        if ( ! $this->privateWebsite) {
             unset($this->modes['nosnippet']);
         }
 
@@ -261,7 +274,7 @@ class BotManager
      */
     public function setNoSnippet()
     {
-        if (!$this->privateWebsite) {
+        if ( ! $this->privateWebsite) {
             $this->modes['nosnippet'] = 'nosnippet';
         }
 
@@ -276,7 +289,7 @@ class BotManager
      */
     public function setTranslate()
     {
-        if (!$this->privateWebsite) {
+        if ( ! $this->privateWebsite) {
             unset($this->modes['notranslate']);
         }
 
@@ -291,7 +304,7 @@ class BotManager
      */
     public function setNoTranslate()
     {
-        if (!$this->privateWebsite) {
+        if ( ! $this->privateWebsite) {
             $this->modes['notranslate'] = 'notranslate';
         }
 
@@ -302,13 +315,13 @@ class BotManager
      * setUnavailableAfter()
      * Google BOT only
      *
-     * @param mixed $time
+     * @param  mixed  $time
      *
      * @return $this
      */
     public function setUnavailableAfter($time)
     {
-        if (!$this->privateWebsite) {
+        if ( ! $this->privateWebsite) {
             // RFC 850 date
             $this->modes['unavailable_after'] = 'unavailable_after: ' . gmdate('d-M-y H:i:s', $time) . ' GMT';
         }
@@ -324,7 +337,7 @@ class BotManager
      */
     public function removeUnavailableAfter()
     {
-        if (!$this->privateWebsite) {
+        if ( ! $this->privateWebsite) {
             unset($this->modes['unavailable_after']);
         }
 
@@ -334,7 +347,7 @@ class BotManager
     /**
      * getMetaTags()
      *
-     * @param bool $html
+     * @param  bool  $html
      *
      * @return array|string
      */
@@ -343,15 +356,15 @@ class BotManager
         $return = [];
         foreach ($this->allBots as $botname) {
             $mode = array_intersect_key($this->modes, array_flip($this->allBotsModes[$botname]));
-            if (!empty($mode)) {
+            if ( ! empty($mode)) {
                 $return[] = [
-                    'name'    => 'name',
-                    'value'   => $botname,
+                    'name' => 'name',
+                    'value' => $botname,
                     'content' => implode(', ', $mode)
                 ];
             }
         }
-        if (!$html) {
+        if ( ! $html) {
             return $return;
         }
         $res = '';
@@ -365,13 +378,13 @@ class BotManager
     /**
      * outputToHeaders()
      *
-     * @param mixed $headers
-     * @param mixed $sys_info
+     * @param  mixed  $headers
+     * @param  mixed  $sys_info
      */
     public function outputToHeaders(&$headers, &$sys_info)
     {
         $mode = array_intersect_key($this->modes, array_flip($this->allBotsModes[$this->headerBotName]));
-        if (!empty($mode)) {
+        if ( ! empty($mode)) {
             unset($sys_info['server_headers']['x-robots-tag']);
             $headers['X-Robots-Tag'] = implode(', ', $mode);
         }
@@ -383,7 +396,7 @@ class BotManager
     public function printToHeaders()
     {
         $mode = array_intersect_key($this->modes, array_flip($this->allBotsModes[$this->headerBotName]));
-        if (!empty($mode)) {
+        if ( ! empty($mode)) {
             @header('X-Robots-Tag: ' . implode(', ', $mode));
         }
     }

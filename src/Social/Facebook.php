@@ -55,7 +55,7 @@ class Facebook implements Environment
     /**
      * Function setAppId
      *
-     * @param string $appId
+     * @param  string  $appId
      *
      * @return $this
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -85,7 +85,7 @@ class Facebook implements Environment
     /**
      * Function setAdminId
      *
-     * @param string $adminId
+     * @param  string  $adminId
      *
      * @return $this
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -115,7 +115,7 @@ class Facebook implements Environment
     /**
      * Function setRedirectUrl
      *
-     * @param string $redirectUrl
+     * @param  string  $redirectUrl
      *
      * @return $this
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -145,8 +145,8 @@ class Facebook implements Environment
     /**
      * Function createShareLink
      *
-     * @param string $url
-     * @param string $caption
+     * @param  string  $url
+     * @param  string  $caption
      *
      * @return $this
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -155,14 +155,14 @@ class Facebook implements Environment
      */
     public function createShareLink(string $url = '', string $caption = ''): Facebook
     {
-        if (empty($caption) && !empty($this->redirectUrl)) {
+        if (empty($caption) && ! empty($this->redirectUrl)) {
             $parseUrl = parse_url($this->redirectUrl);
-            $caption  = $parseUrl['host'];
+            $caption = $parseUrl['host'];
         }
-        $params     = array(
-            'app_id'       => $this->appId,
-            'caption'      => $caption,
-            'href'         => $url . '?utm_source=facebook&utm_medium=link_share&utm_campaign=facebook_share',
+        $params = array(
+            'app_id' => $this->appId,
+            'caption' => $caption,
+            'href' => $url . '?utm_source=facebook&utm_medium=link_share&utm_campaign=facebook_share',
             'redirect_uri' => $this->redirectUrl . '?utm_source=facebook&utm_medium=link_call_back&utm_campaign=facebook_share'
         );
         $this->link = self::SHARE_URI . '?' . http_build_query($params);
@@ -173,7 +173,7 @@ class Facebook implements Environment
     /**
      * Function graphShare
      *
-     * @param string $url
+     * @param  string  $url
      *
      * @return $this
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -182,9 +182,9 @@ class Facebook implements Environment
      */
     public function graphShare(string $url = ''): Facebook
     {
-        $params  = array('id' => $url);
+        $params = array('id' => $url);
         $request = Utils::sendRequest(self::GRAPH_URI, $params);
-        if (!empty($request)) {
+        if ( ! empty($request)) {
             $this->graphShare = json_decode(trim($request));
         } else {
             $this->graphShare = null;

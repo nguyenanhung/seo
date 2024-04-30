@@ -21,10 +21,10 @@ trait Version
     /**
      * Function getVersion
      *
+     * @return string
      * @author: 713uk13m <dev@nguyenanhung.com>
      * @time  : 2018-12-31 01:39
      *
-     * @return string
      */
     public function getVersion(): string
     {
