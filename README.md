@@ -1,4 +1,9 @@
-[![Latest Stable Version](http://poser.pugx.org/nguyenanhung/seo/v)](https://packagist.org/packages/nguyenanhung/seo) [![Total Downloads](http://poser.pugx.org/nguyenanhung/seo/downloads)](https://packagist.org/packages/nguyenanhung/seo) [![Latest Unstable Version](http://poser.pugx.org/nguyenanhung/seo/v/unstable)](https://packagist.org/packages/nguyenanhung/seo) [![License](http://poser.pugx.org/nguyenanhung/seo/license)](https://packagist.org/packages/nguyenanhung/seo) [![PHP Version Require](http://poser.pugx.org/nguyenanhung/seo/require/php)](https://packagist.org/packages/nguyenanhung/seo)
+[![Latest Stable Version](https://img.shields.io/packagist/v/nguyenanhung/seo.svg?style=flat-square)](https://packagist.org/packages/nguyenanhung/seo)
+[![Total Downloads](https://img.shields.io/packagist/dt/nguyenanhung/seo.svg?style=flat-square)](https://packagist.org/packages/nguyenanhung/seo)
+[![Daily Downloads](https://img.shields.io/packagist/dd/nguyenanhung/seo.svg?style=flat-square)](https://packagist.org/packages/nguyenanhung/seo)
+[![Monthly Downloads](https://img.shields.io/packagist/dm/nguyenanhung/seo.svg?style=flat-square)](https://packagist.org/packages/nguyenanhung/seo)
+[![License](https://img.shields.io/packagist/l/nguyenanhung/seo.svg?style=flat-square)](https://packagist.org/packages/nguyenanhung/seo)
+[![PHP Version Require](https://img.shields.io/packagist/dependency-v/nguyenanhung/seo/php)](https://packagist.org/packages/nguyenanhung/seo)
 
 # Search Engine Optimization Package
 
