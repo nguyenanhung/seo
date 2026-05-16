@@ -23,8 +23,8 @@ class Utils
     /**
      * Function jsonItem
      *
-     * @param  string  $json
-     * @param  string  $output
+     * @param string $json
+     * @param string $output
      *
      * @return string|null
      * @author: 713uk13m <dev@nguyenanhung.com>
@@ -60,9 +60,9 @@ class Utils
     /**
      * Function sendRequest
      *
-     * @param  string  $url
-     * @param  null|array|object|string  $params
-     * @param  string  $method
+     * @param string $url
+     * @param null|array|object|string $params
+     * @param string $method
      *
      * @return bool|string|null
      * @author   : 713uk13m <dev@nguyenanhung.com>
@@ -73,7 +73,7 @@ class Utils
     {
         try {
             $method = strtoupper($method);
-            $endpoint = ((is_array($params) || is_object($params)) && ! empty($params)) ? $url . '?' . http_build_query(
+            $endpoint = ((is_array($params) || is_object($params)) && !empty($params)) ? $url . '?' . http_build_query(
                     $params
                 ) : $url;
             $curl = curl_init();
@@ -90,7 +90,9 @@ class Utils
             ));
             $response = curl_exec($curl);
             $err = curl_error($curl);
-            curl_close($curl);
+            if (PHP_VERSION_ID < 80000) {
+                curl_close($curl);
+            }
             if ($err) {
                 $message = "cURL Error #:" . $err;
                 if (function_exists('log_message')) {
